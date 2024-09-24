@@ -151,7 +151,7 @@ d
 </style>
 
 
-<jsp:include page="/data/common/header.jsp" />
+<jsp:include page="/data/common/header2.jsp" />
 
 <!-- Normal Breadcrumb Begin -->
 <section class="normal-breadcrumb set-bg" data-setbg="data/img/ott.png">
@@ -274,4 +274,4 @@ d
 </section>
 <!-- Login Section End -->
 
-<jsp:include page="/data/common/footer.jsp" />
+<jsp:include page="/data/common/footer2.jsp" />

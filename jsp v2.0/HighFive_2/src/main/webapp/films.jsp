@@ -79,7 +79,7 @@ function purchaseFilm(filmId, button, film_name) {
 }
 </script>
 
-<jsp:include page="/data/common/header.jsp" />
+<jsp:include page="/data/common/header2.jsp" />
 
 <body>
 <!-- Breadcrumb Begin -->
@@ -286,7 +286,7 @@ function purchaseFilm(filmId, button, film_name) {
 </section>
 <!-- Product Section End -->
 
-<jsp:include page="/data/common/footer.jsp" />
+<jsp:include page="/data/common/footer2.jsp" />
 
 </body>
 </html>

@@ -4,7 +4,7 @@
 <%@ page import="javax.sql.*" %>
 
 
-<jsp:include page="/data/common/header.jsp" />
+<jsp:include page="/data/common/header2.jsp" />
 
 
 
@@ -114,4 +114,4 @@
 
 
 <br><br>
-<jsp:include page="/data/common/footer.jsp" />
+<jsp:include page="/data/common/footer2.jsp" />

@@ -17,7 +17,7 @@
 %>
 
 
-<jsp:include page="/data/common/header.jsp" />
+<jsp:include page="/data/common/header1.jsp" />
 
 
 
@@ -94,4 +94,4 @@
 
 </html>
 
-<jsp:include page="/data/common/footer.jsp" />
+<jsp:include page="/data/common/footer1.jsp" />

@@ -5,7 +5,7 @@
 <%@ page import="java.sql.Timestamp, java.text.SimpleDateFormat" %>
 <!DOCTYPE html>
 
-<jsp:include page="/data/common/header.jsp" />
+<jsp:include page="/data/common/header2.jsp" />
 <style>
     .login {
         background-color: #000000; /* 어두운 배경 색상 */
@@ -183,4 +183,4 @@
     
 <!-- Login Section End -->
 
-<jsp:include page="/data/common/footer.jsp" />
+<jsp:include page="/data/common/footer2.jsp" />
