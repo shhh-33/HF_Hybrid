@@ -13,13 +13,13 @@ metadata:
     kubernetes.io/ingress.class: alb
     alb.ingress.kubernetes.io/target-type: ip
     alb.ingress.kubernetes.io/scheme: internet-facing
-    alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:ap-northeast-2:381492042252:certificate/243d08af-49ea-40c2-9d1f-cf573fcdc575
+    alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:ap-northeast-2:975050099328:certificate/632b1fbe-33a0-46b7-8c5b-cd89551324ec
     alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}, {"HTTPS": 443}]'
     alb.ingress.kubernetes.io/ssl-policy: ELBSecurityPolicy-2016-08
 spec:
   ingressClassName: alb
   rules:
-  - host: ehddlf5709.shop
+  - host: eunchae.shop
     http: 
       paths:
       - path: /
@@ -92,7 +92,7 @@ spec:
             name: month-service
             port:
               number: 80
-  - host: '*.ehddlf5709.shop'
+  - host: '*.eunchae.shop'
     http: 
       paths:
       - path: /
