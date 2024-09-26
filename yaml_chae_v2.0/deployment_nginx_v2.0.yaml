@@ -578,7 +578,7 @@ spec:
               memory: 150Mi
           livenessProbe:
             httpGet:
-              path: /userinfo.jsp
+              path: /userInfo.jsp
               port: 80
             initialDelaySeconds: 60
             periodSeconds: 60
@@ -724,7 +724,7 @@ spec:
               memory: 150Mi
           livenessProbe:
             httpGet:
-              path: /lastfilms.jsp
+              path: /lastFilms.jsp
               port: 80
             initialDelaySeconds: 60
             periodSeconds: 60
