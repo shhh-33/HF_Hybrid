@@ -61,9 +61,6 @@ spec:
           name: index
           ports:
             - containerPort: 80
-          volumeMounts:
-            - mountPath: "/usr/share/nginx/html/data"
-              name: html
           resources:
             limits:
               cpu: 200m
@@ -80,10 +77,6 @@ spec:
             timeoutSeconds: 5
             successThreshold: 1
             failureThreshold: 3
-      volumes:
-        - name: html
-          persistentVolumeClaim:
-            claimName: pvc-nginx
 
 ---
 apiVersion: apps/v1
@@ -140,9 +133,6 @@ spec:
           name: films
           ports:
             - containerPort: 80
-          volumeMounts:
-            - mountPath: "/usr/share/nginx/html/data"
-              name: html
           resources:
             limits:
               cpu: 200m
@@ -159,10 +149,6 @@ spec:
             timeoutSeconds: 5
             successThreshold: 1
             failureThreshold: 3
-      volumes:
-        - name: html
-          persistentVolumeClaim:
-            claimName: pvc-nginx
 
 ---
 apiVersion: apps/v1
@@ -219,9 +205,6 @@ spec:
           name: purchase
           ports:
             - containerPort: 80
-          volumeMounts:
-            - mountPath: "/usr/share/nginx/html/data"
-              name: html
           resources:
             limits:
               cpu: 200m
@@ -238,10 +221,6 @@ spec:
             timeoutSeconds: 5
             successThreshold: 1
             failureThreshold: 3
-      volumes:
-        - name: html
-          persistentVolumeClaim:
-            claimName: pvc-nginx
 
 ---
 apiVersion: apps/v1
@@ -298,9 +277,6 @@ spec:
           name: join
           ports:
             - containerPort: 80
-          volumeMounts:
-            - mountPath: "/usr/share/nginx/html/data"
-              name: html
           resources:
             limits:
               cpu: 200m
@@ -317,10 +293,6 @@ spec:
             timeoutSeconds: 5
             successThreshold: 1
             failureThreshold: 3
-      volumes:
-        - name: html
-          persistentVolumeClaim:
-            claimName: pvc-nginx
 
 ---
 apiVersion: apps/v1
@@ -377,9 +349,6 @@ spec:
           name: login
           ports:
             - containerPort: 80
-          volumeMounts:
-            - mountPath: "/usr/share/nginx/html/data"
-              name: html
           resources:
             limits:
               cpu: 200m
@@ -396,10 +365,7 @@ spec:
             timeoutSeconds: 5
             successThreshold: 1
             failureThreshold: 3
-      volumes:
-        - name: html
-          persistentVolumeClaim:
-            claimName: pvc-nginx
+
 
 ---
 apiVersion: apps/v1
@@ -456,9 +422,6 @@ spec:
           name: mypage
           ports:
             - containerPort: 80
-          volumeMounts:
-            - mountPath: "/usr/share/nginx/html/data"
-              name: html
           resources:
             limits:
               cpu: 200m
@@ -475,10 +438,6 @@ spec:
             timeoutSeconds: 5
             successThreshold: 1
             failureThreshold: 3
-      volumes:
-        - name: html
-          persistentVolumeClaim:
-            claimName: pvc-nginx
 
 
 
@@ -537,9 +496,6 @@ spec:
           name: snack
           ports:
             - containerPort: 80
-          volumeMounts:
-            - mountPath: "/usr/share/nginx/html/data"
-              name: html
           resources:
             limits:
               cpu: 200m
@@ -556,10 +512,6 @@ spec:
             timeoutSeconds: 5
             successThreshold: 1
             failureThreshold: 3
-      volumes:
-        - name: html
-          persistentVolumeClaim:
-            claimName: pvc-nginx
 
 
 ---
@@ -617,9 +569,6 @@ spec:
           name: userinfo
           ports:
             - containerPort: 80
-          volumeMounts:
-            - mountPath: "/usr/share/nginx/html/data"
-              name: html
           resources:
             limits:
               cpu: 200m
@@ -636,10 +585,6 @@ spec:
             timeoutSeconds: 5
             successThreshold: 1
             failureThreshold: 3
-      volumes:
-        - name: html
-          persistentVolumeClaim:
-            claimName: pvc-nginx
 
 
 ---
@@ -697,9 +642,6 @@ spec:
           name: month
           ports:
             - containerPort: 80
-          volumeMounts:
-            - mountPath: "/usr/share/nginx/html/data"
-              name: html
           resources:
             limits:
               cpu: 200m
@@ -716,10 +658,6 @@ spec:
             timeoutSeconds: 5
             successThreshold: 1
             failureThreshold: 3
-      volumes:
-        - name: html
-          persistentVolumeClaim:
-            claimName: pvc-nginx
 
 
 ---
@@ -777,9 +715,6 @@ spec:
           name: lastfilms
           ports:
             - containerPort: 80
-          volumeMounts:
-            - mountPath: "/usr/share/nginx/html/data"
-              name: html
           resources:
             limits:
               cpu: 200m
@@ -796,7 +731,3 @@ spec:
             timeoutSeconds: 5
             successThreshold: 1
             failureThreshold: 3
-      volumes:
-        - name: html
-          persistentVolumeClaim:
-            claimName: pvc-nginx
