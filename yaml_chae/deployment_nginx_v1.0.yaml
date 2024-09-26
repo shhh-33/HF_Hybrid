@@ -54,7 +54,7 @@ spec:
                       - index
               topologyKey: "kubernetes.io/hostname"
       containers:
-        - image: 975050099328.dkr.ecr.ap-northeast-2.amazonaws.com/nginx-films:v1.0
+        - image: 975050099328.dkr.ecr.ap-northeast-2.amazonaws.com/nginx-index:v1.0
           name: index
           ports:
             - containerPort: 80
@@ -198,7 +198,7 @@ spec:
                       - purchase
               topologyKey: "kubernetes.io/hostname"
       containers:
-        - image: 975050099328.dkr.ecr.ap-northeast-2.amazonaws.com/nginx-films:v1.0
+        - image: 975050099328.dkr.ecr.ap-northeast-2.amazonaws.com/nginx-purchase:v1.0
           name: purchase
           ports:
             - containerPort: 80
@@ -269,7 +269,7 @@ spec:
                       - join
               topologyKey: "kubernetes.io/hostname"
       containers:
-        - image: 975050099328.dkr.ecr.ap-northeast-2.amazonaws.com/nginx-films:v1.0
+        - image: 975050099328.dkr.ecr.ap-northeast-2.amazonaws.com/nginx-join:v1.0
           name: join
           ports:
             - containerPort: 80
@@ -341,7 +341,7 @@ spec:
                       - login
               topologyKey: "kubernetes.io/hostname"
       containers:
-        - image: 975050099328.dkr.ecr.ap-northeast-2.amazonaws.com/nginx-films:v1.0
+        - image: 975050099328.dkr.ecr.ap-northeast-2.amazonaws.com/nginx-login:v1.0
           name: login
           ports:
             - containerPort: 80
@@ -414,7 +414,7 @@ spec:
                       - mypage
               topologyKey: "kubernetes.io/hostname"
       containers:
-        - image: 975050099328.dkr.ecr.ap-northeast-2.amazonaws.com/nginx-films:v1.0
+        - image: 975050099328.dkr.ecr.ap-northeast-2.amazonaws.com/nginx-mypage:v1.0
           name: mypage
           ports:
             - containerPort: 80
