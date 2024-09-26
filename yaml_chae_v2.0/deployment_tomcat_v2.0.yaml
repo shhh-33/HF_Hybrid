@@ -63,7 +63,7 @@ spec:
               app: tomcat
               name: index
       containers:
-        - image: 381492042252.dkr.ecr.ap-northeast-2.amazonaws.com/tomcat-index:v4.0
+        - image: 975050099328.dkr.ecr.ap-northeast-2.amazonaws.com/tomcat-index:v2.0
           name: tomcat-index-deploy
           ports:
             - containerPort: 8080
@@ -148,7 +148,7 @@ spec:
               app: tomcat
               name: films
       containers:
-        - image: 381492042252.dkr.ecr.ap-northeast-2.amazonaws.com/tomcat-films:v4.0
+        - image: 975050099328.dkr.ecr.ap-northeast-2.amazonaws.com/tomcat-films:v2.0
           name: tomcat-films-deploy
           ports:
             - containerPort: 8080
@@ -233,7 +233,7 @@ spec:
               app: tomcat
               name: purchase
       containers:
-        - image: 381492042252.dkr.ecr.ap-northeast-2.amazonaws.com/tomcat-purchase:v3.0
+        - image: 975050099328.dkr.ecr.ap-northeast-2.amazonaws.com/tomcat-purchase:v2.0
           name: tomcat-purchase-deploy
           ports:
             - containerPort: 8080
@@ -319,7 +319,7 @@ spec:
               app: tomcat
               name: join
       containers:
-        - image: 381492042252.dkr.ecr.ap-northeast-2.amazonaws.com/tomcat-join:v3.0
+        - image: 975050099328.dkr.ecr.ap-northeast-2.amazonaws.com/tomcat-join:v2.0
           name: tomcat-join-deploy
           ports:
             - containerPort: 8080
@@ -404,7 +404,7 @@ spec:
               app: tomcat
               name: login
       containers:
-        - image: 381492042252.dkr.ecr.ap-northeast-2.amazonaws.com/tomcat-login:v3.0
+        - image: 975050099328.dkr.ecr.ap-northeast-2.amazonaws.com/tomcat-login:v2.0
           name: tomcat-login-deploy
           ports:
             - containerPort: 8080
@@ -490,7 +490,7 @@ spec:
               name: mypage
 
       containers:
-        - image: 381492042252.dkr.ecr.ap-northeast-2.amazonaws.com/tomcat-mypage:v3.0
+        - image: 975050099328.dkr.ecr.ap-northeast-2.amazonaws.com/tomcat-mypage:v2.0
           name: tomcat-mypage-deploy
           ports:
             - containerPort: 8080
@@ -577,7 +577,7 @@ spec:
               name: snack
 
       containers:
-        - image: 381492042252.dkr.ecr.ap-northeast-2.amazonaws.com/tomcat-snack:v2.0
+        - image: 975050099328.dkr.ecr.ap-northeast-2.amazonaws.com/tomcat-snack:v2.0
           name: tomcat-snack-deploy
           ports:
             - containerPort: 8080
@@ -663,7 +663,7 @@ spec:
               name: userinfo
 
       containers:
-        - image: 381492042252.dkr.ecr.ap-northeast-2.amazonaws.com/tomcat-userinfo:v2.0
+        - image: 975050099328.dkr.ecr.ap-northeast-2.amazonaws.com/tomcat-userInfo:v2.0
           name: tomcat-userinfo-deploy
           ports:
             - containerPort: 8080
@@ -749,7 +749,7 @@ spec:
               name: month
 
       containers:
-        - image: 381492042252.dkr.ecr.ap-northeast-2.amazonaws.com/tomcat-month:v2.0
+        - image: 975050099328.dkr.ecr.ap-northeast-2.amazonaws.com/tomcat-month:v2.0
           name: tomcat-month-deploy
           ports:
             - containerPort: 8080
@@ -836,7 +836,7 @@ spec:
               name: lastfilms
 
       containers:
-        - image: 381492042252.dkr.ecr.ap-northeast-2.amazonaws.com/tomcat-lastfilms:v2.0
+        - image: 975050099328.dkr.ecr.ap-northeast-2.amazonaws.com/tomcat-lastFilms:v2.0
           name: tomcat-lastfilms-deploy
           ports:
             - containerPort: 8080
