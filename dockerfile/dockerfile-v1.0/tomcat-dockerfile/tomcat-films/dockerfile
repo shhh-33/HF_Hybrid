@@ -27,7 +27,7 @@ wget https://github.com/ran-jit/tomcat-cluster-redis-session-manager/releases/do
 unzip tomcat-cluster-redis-session-manager.zip -d $CATALINA_HOME && \
 mv $CATALINA_HOME/tomcat-cluster-redis-session-manager/lib/* $CATALINA_HOME/lib/ && \
 mv $CATALINA_HOME/tomcat-cluster-redis-session-manager/conf/* $CATALINA_HOME/conf/
-
+#redis 추가
 COPY ./redis-data-cache.properties $CATALINA_HOME/conf/
 COPY ./context.xml /$CATALINA_HOME/conf/
 COPY ./web.xml /$CATALINA_HOME/conf/
