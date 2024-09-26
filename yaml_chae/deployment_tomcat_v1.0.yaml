@@ -1,6 +1,9 @@
-### v1.0  ###
-#접속 빈도 : index > films purchase > join login mypage
-#추후 수정 : resources, RollingUpdate, affinity weight, livenessProbe
+### v2.0  ###
+#시나리오   1.관리자           : userinfo, lastfilms 추가 -> 모든 회원 정보와 상영 마감한 영화를 보게함
+#          2.관리자,client    : snack, month 추가 -> 영화보며 먹을 스낵과 이달의 추천 영화도 보게 함
+#          3.관리자,client    : films 변경 -> image와 세일 후 가격으로 바뀜 
+#접속 빈도 : index > films purchase snack > join login mypage >  userinfo month lastfilms
+#추후 수정 : resources, RollingUpdate, affinity weight, livenessProbe(?)
 #            nginx보다 높은 resources
 #수정 여부 : X
 
@@ -60,7 +63,7 @@ spec:
               app: tomcat
               name: index
       containers:
-        - image: 975050099328.dkr.ecr.ap-northeast-2.amazonaws.com/tomcat-index:v20.0
+        - image: 975050099328.dkr.ecr.ap-northeast-2.amazonaws.com/tomcat-index:v21.0
           name: tomcat-index-deploy
           ports:
             - containerPort: 8080
@@ -145,7 +148,7 @@ spec:
               app: tomcat
               name: films
       containers:
-        - image: 975050099328.dkr.ecr.ap-northeast-2.amazonaws.com/tomcat-films:v20.0
+        - image: 975050099328.dkr.ecr.ap-northeast-2.amazonaws.com/tomcat-films:v2.0
           name: tomcat-films-deploy
           ports:
             - containerPort: 8080
@@ -157,8 +160,8 @@ spec:
               cpu: 200m
               memory: 250Mi
             requests:
-              cpu: 200m
-              memory: 250Mi
+              cpu: 100m
+              memory: 150Mi
           livenessProbe:
             httpGet:
               path: /films.jsp
@@ -230,7 +233,7 @@ spec:
               app: tomcat
               name: purchase
       containers:
-        - image: 975050099328.dkr.ecr.ap-northeast-2.amazonaws.com/tomcat-purchase:v20.0
+        - image: 975050099328.dkr.ecr.ap-northeast-2.amazonaws.com/tomcat-purchase:v2.0
           name: tomcat-purchase-deploy
           ports:
             - containerPort: 8080
@@ -242,8 +245,8 @@ spec:
               cpu: 200m
               memory: 250Mi
             requests:
-              cpu: 200m
-              memory: 250Mi
+              cpu: 100m
+              memory: 150Mi
           livenessProbe:
             httpGet:
               path: /purchase.jsp
@@ -316,7 +319,7 @@ spec:
               app: tomcat
               name: join
       containers:
-        - image: 975050099328.dkr.ecr.ap-northeast-2.amazonaws.com/tomcat-join:v20.0
+        - image: 975050099328.dkr.ecr.ap-northeast-2.amazonaws.com/tomcat-join:v2.0
           name: tomcat-join-deploy
           ports:
             - containerPort: 8080
@@ -328,8 +331,8 @@ spec:
               cpu: 200m
               memory: 250Mi
             requests:
-              cpu: 200m
-              memory: 250Mi
+              cpu: 100m
+              memory: 150Mi
           livenessProbe:
             httpGet:
               path: /join.jsp
@@ -401,7 +404,7 @@ spec:
               app: tomcat
               name: login
       containers:
-        - image: 975050099328.dkr.ecr.ap-northeast-2.amazonaws.com/tomcat-login:v20.0
+        - image: 975050099328.dkr.ecr.ap-northeast-2.amazonaws.com/tomcat-login:v2.0
           name: tomcat-login-deploy
           ports:
             - containerPort: 8080
@@ -413,8 +416,8 @@ spec:
               cpu: 200m
               memory: 250Mi
             requests:
-              cpu: 200m
-              memory: 250Mi
+              cpu: 100m
+              memory: 150Mi
           livenessProbe:
             httpGet:
               path: /login.jsp
@@ -485,8 +488,9 @@ spec:
             matchLabels:
               app: tomcat
               name: mypage
+
       containers:
-        - image: 975050099328.dkr.ecr.ap-northeast-2.amazonaws.com/tomcat-mypage:v20.0
+        - image: 975050099328.dkr.ecr.ap-northeast-2.amazonaws.com/tomcat-mypage:v2.0
           name: tomcat-mypage-deploy
           ports:
             - containerPort: 8080
@@ -498,8 +502,8 @@ spec:
               cpu: 200m
               memory: 250Mi
             requests:
-              cpu: 200m
-              memory: 250Mi
+              cpu: 100m
+              memory: 150Mi
           livenessProbe:
             httpGet:
               path: /mypage.jsp
@@ -515,3 +519,346 @@ spec:
             claimName: pvc-tomcat
 
 
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tomcat-snack
+  namespace: tomcat
+  annotations:
+    kubernetes.io/change-cause: first_version
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: tomcat
+      name: snack
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+  template:
+    metadata:
+      labels:
+        app: tomcat
+        name: snack
+    spec:
+      affinity:
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+            - weight: 100
+              podAffinityTerm:
+                labelSelector:
+                  matchExpressions:
+                    - key: app
+                      operator: In
+                      values:
+                        - tomcat
+                    - key: name
+                      operator: In
+                      values:
+                        - snack
+                topologyKey: topology.kubernetes.io/zone
+      topologySpreadConstraints:
+        - maxSkew: 1
+          topologyKey: "kubernetes.io/hostname"
+          whenUnsatisfiable: DoNotSchedule
+          labelSelector:
+            matchLabels:
+              app: tomcat
+              name: snack
+        - maxSkew: 1
+          topologyKey: "topology.kubernetes.io/zone"
+          whenUnsatisfiable: DoNotSchedule
+          labelSelector:
+            matchLabels:
+              app: tomcat
+              name: snack
+
+      containers:
+        - image: 975050099328.dkr.ecr.ap-northeast-2.amazonaws.com/tomcat-snack:v1.0
+          name: tomcat-snack-deploy
+          ports:
+            - containerPort: 8080
+          volumeMounts:
+            - mountPath: "/opt/tomcat/webapps/ROOT/data"
+              name: html
+          resources:
+            limits:
+              cpu: 200m
+              memory: 250Mi
+            requests:
+              cpu: 100m
+              memory: 150Mi
+          livenessProbe:
+            httpGet:
+              path: /snack.jsp
+              port: 8080
+            initialDelaySeconds: 60
+            periodSeconds: 60
+            timeoutSeconds: 1
+            successThreshold: 1
+            failureThreshold: 3
+      volumes:
+        - name: html
+          persistentVolumeClaim:
+            claimName: pvc-tomcat
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tomcat-userinfo
+  namespace: tomcat
+  annotations:
+    kubernetes.io/change-cause: first_version
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: tomcat
+      name: userinfo
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+  template:
+    metadata:
+      labels:
+        app: tomcat
+        name: userinfo
+    spec:
+      affinity:
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+            - weight: 100
+              podAffinityTerm:
+                labelSelector:
+                  matchExpressions:
+                    - key: app
+                      operator: In
+                      values:
+                        - tomcat
+                    - key: name
+                      operator: In
+                      values:
+                        - userinfo
+                topologyKey: topology.kubernetes.io/zone
+      topologySpreadConstraints:
+        - maxSkew: 1
+          topologyKey: "kubernetes.io/hostname"
+          whenUnsatisfiable: DoNotSchedule
+          labelSelector:
+            matchLabels:
+              app: tomcat
+              name: userinfo
+        - maxSkew: 1
+          topologyKey: "topology.kubernetes.io/zone"
+          whenUnsatisfiable: DoNotSchedule
+          labelSelector:
+            matchLabels:
+              app: tomcat
+              name: userinfo
+
+      containers:
+        - image: 975050099328.dkr.ecr.ap-northeast-2.amazonaws.com/tomcat-userinfo:v1.0
+          name: tomcat-userinfo-deploy
+          ports:
+            - containerPort: 8080
+          volumeMounts:
+            - mountPath: "/opt/tomcat/webapps/ROOT/data"
+              name: html
+          resources:
+            limits:
+              cpu: 200m
+              memory: 250Mi
+            requests:
+              cpu: 100m
+              memory: 150Mi
+          livenessProbe:
+            httpGet:
+              path: /userInfo.jsp
+              port: 8080
+            initialDelaySeconds: 60
+            periodSeconds: 60
+            timeoutSeconds: 1
+            successThreshold: 1
+            failureThreshold: 3
+      volumes:
+        - name: html
+          persistentVolumeClaim:
+            claimName: pvc-tomcat
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tomcat-month
+  namespace: tomcat
+  annotations:
+    kubernetes.io/change-cause: first_version
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: tomcat
+      name: month
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+  template:
+    metadata:
+      labels:
+        app: tomcat
+        name: month
+    spec:
+      affinity:
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+            - weight: 100
+              podAffinityTerm:
+                labelSelector:
+                  matchExpressions:
+                    - key: app
+                      operator: In
+                      values:
+                        - tomcat
+                    - key: name
+                      operator: In
+                      values:
+                        - month
+                topologyKey: topology.kubernetes.io/zone
+      topologySpreadConstraints:
+        - maxSkew: 1
+          topologyKey: "kubernetes.io/hostname"
+          whenUnsatisfiable: DoNotSchedule
+          labelSelector:
+            matchLabels:
+              app: tomcat
+              name: month
+        - maxSkew: 1
+          topologyKey: "topology.kubernetes.io/zone"
+          whenUnsatisfiable: DoNotSchedule
+          labelSelector:
+            matchLabels:
+              app: tomcat
+              name: month
+
+      containers:
+        - image: 975050099328.dkr.ecr.ap-northeast-2.amazonaws.com/tomcat-month:v1.0
+          name: tomcat-month-deploy
+          ports:
+            - containerPort: 8080
+          volumeMounts:
+            - mountPath: "/opt/tomcat/webapps/ROOT/data"
+              name: html
+          resources:
+            limits:
+              cpu: 200m
+              memory: 250Mi
+            requests:
+              cpu: 100m
+              memory: 150Mi
+          livenessProbe:
+            httpGet:
+              path: /month.jsp
+              port: 8080
+            initialDelaySeconds: 60
+            periodSeconds: 60
+            timeoutSeconds: 1
+            successThreshold: 1
+            failureThreshold: 3
+      volumes:
+        - name: html
+          persistentVolumeClaim:
+            claimName: pvc-tomcat
+
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tomcat-lastfilms
+  namespace: tomcat
+  annotations:
+    kubernetes.io/change-cause: first_version
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: tomcat
+      name: lastfilms
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+  template:
+    metadata:
+      labels:
+        app: tomcat
+        name: lastfilms
+    spec:
+      affinity:
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+            - weight: 100
+              podAffinityTerm:
+                labelSelector:
+                  matchExpressions:
+                    - key: app
+                      operator: In
+                      values:
+                        - tomcat
+                    - key: name
+                      operator: In
+                      values:
+                        - lastfilms
+                topologyKey: topology.kubernetes.io/zone
+      topologySpreadConstraints:
+        - maxSkew: 1
+          topologyKey: "kubernetes.io/hostname"
+          whenUnsatisfiable: DoNotSchedule
+          labelSelector:
+            matchLabels:
+              app: tomcat
+              name: lastfilms
+        - maxSkew: 1
+          topologyKey: "topology.kubernetes.io/zone"
+          whenUnsatisfiable: DoNotSchedule
+          labelSelector:
+            matchLabels:
+              app: tomcat
+              name: lastfilms
+      containers:
+        - image: 975050099328.dkr.ecr.ap-northeast-2.amazonaws.com/tomcat-lastfilms:v1.0
+          name: tomcat-lastfilms-deploy
+          ports:
+            - containerPort: 8080
+          volumeMounts:
+            - mountPath: "/opt/tomcat/webapps/ROOT/data"
+              name: html
+          resources:
+            limits:
+              cpu: 200m
+              memory: 250Mi
+            requests:
+              cpu: 100m
+              memory: 150Mi
+          livenessProbe:
+            httpGet:
+              path: /lastFilms.jsp
+              port: 8080
+            initialDelaySeconds: 60
+            periodSeconds: 60
+            timeoutSeconds: 1
+            successThreshold: 1
+            failureThreshold: 3
+      volumes:
+        - name: html
+          persistentVolumeClaim:
+            claimName: pvc-tomcat
