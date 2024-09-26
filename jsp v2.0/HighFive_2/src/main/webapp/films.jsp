@@ -136,15 +136,15 @@ function purchaseFilm(filmId, button, film_name) {
 
                                     // 영화 ID에 따라 다른 이미지 경로 설정
                                     switch (filmId2) {
-                                        case 1: imagePath = "data/img/films/12.png"; break;
-                                        case 2: imagePath = "data/img/films/alien2.png"; break;
-                                        case 3: imagePath = "data/img/films/avatar.png"; break;
-                                        case 4: imagePath = "data/img/films/Dune.png"; break;
-                                        case 5: imagePath = "data/img/films/panda.png"; break;
-                                        case 6: imagePath = "data/img/films/the_admiral.png"; break;
-                                        case 7: imagePath = "data/img/films/the_roundup.png"; break;
-                                        case 8: imagePath = "data/img/films/topgun.png"; break;
-                                        case 9: imagePath = "data/img/films/interstellar.png"; break;
+                                        case 1: imagePath = "data/img/films/12_50.png"; break;
+                                        case 2: imagePath = "data/img/films/alien2_50.png"; break;
+                                        case 3: imagePath = "data/img/films/avatar_50.png"; break;
+                                        case 4: imagePath = "data/img/films/Dune_50.png"; break;
+                                        case 5: imagePath = "data/img/films/panda_50.png"; break;
+                                        case 6: imagePath = "data/img/films/the_admiral_50.png"; break;
+                                        case 7: imagePath = "data/img/films/the_roundup_50.png"; break;
+                                        case 8: imagePath = "data/img/films/topgun_50.png"; break;
+                                        case 9: imagePath = "data/img/films/interstellar_50.png"; break;
                                         default: imagePath = "data/img/films/default.png"; break;
                                     }
 
