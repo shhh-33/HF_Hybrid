@@ -1,0 +1,478 @@
+### v1.0  ###
+#접속 빈도 : index > films purchase > join login mypage
+#추후 수정 : resources, RollingUpdate, affinity weight, livenessProbe
+#수정 여부 : X
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deploy-index
+  namespace: nginx
+  annotations:
+    kubernetes.io/change-cause: first_version
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nginx
+      name: index
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+  template:
+    metadata:
+      labels:
+        app: nginx
+        name: index
+    spec:
+      affinity:
+        podAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+            - weight: 100
+              podAffinityTerm:
+                labelSelector:
+                  matchExpressions:
+                    - key: app
+                      operator: In
+                      values:
+                        - tomcat
+                    - key: name
+                      operator: In
+                      values:
+                        - index
+                topologyKey: "kubernetes.io/hostname"
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            - labelSelector:
+                matchExpressions:
+                  - key: name
+                    operator: In
+                    values:
+                      - index
+              topologyKey: "kubernetes.io/hostname"
+      containers:
+        - image: 381492042252.dkr.ecr.ap-northeast-2.amazonaws.com/nginx-index:v1.0
+          name: index
+          ports:
+            - containerPort: 80
+          volumeMounts:
+            - mountPath: "/usr/share/nginx/html/data"
+              name: html
+          resources:
+            limits:
+              cpu: 200m
+              memory: 250Mi
+            requests:
+              cpu: 200m
+              memory: 250Mi
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 80
+            initialDelaySeconds: 60
+            periodSeconds: 60
+            timeoutSeconds: 5
+            successThreshold: 1
+            failureThreshold: 3
+      volumes:
+        - name: html
+          persistentVolumeClaim:
+            claimName: pvc-nginx
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deploy-films
+  namespace: nginx
+  annotations:
+    kubernetes.io/change-cause: first_version
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nginx
+      name: films
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+  template:
+    metadata:
+      labels:
+        app: nginx
+        name: films
+    spec:
+      affinity:
+        podAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+            - weight: 100
+              podAffinityTerm:
+                labelSelector:
+                  matchExpressions:
+                    - key: app
+                      operator: In
+                      values:
+                        - tomcat
+                    - key: name
+                      operator: In
+                      values:
+                        - films
+                topologyKey: "kubernetes.io/hostname"
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            - labelSelector:
+                matchExpressions:
+                  - key: name
+                    operator: In
+                    values:
+                      - films
+              topologyKey: "kubernetes.io/hostname"
+      containers:
+        - image: 381492042252.dkr.ecr.ap-northeast-2.amazonaws.com/nginx-films:v1.0
+          name: films
+          ports:
+            - containerPort: 80
+          volumeMounts:
+            - mountPath: "/usr/share/nginx/html/data"
+              name: html
+          resources:
+            limits:
+              cpu: 200m
+              memory: 250Mi
+            requests:
+              cpu: 200m
+              memory: 250Mi
+          livenessProbe:
+            httpGet:
+              path: /films.jsp
+              port: 80
+            initialDelaySeconds: 60
+            periodSeconds: 60
+            timeoutSeconds: 5
+            successThreshold: 1
+            failureThreshold: 3
+      volumes:
+        - name: html
+          persistentVolumeClaim:
+            claimName: pvc-nginx
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deploy-purchase
+  namespace: nginx
+  annotations:
+    kubernetes.io/change-cause: first_version
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nginx
+      name: purchase
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+  template:
+    metadata:
+      labels:
+        app: nginx
+        name: purchase
+    spec:
+      affinity:
+        podAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+            - weight: 100
+              podAffinityTerm:
+                labelSelector:
+                  matchExpressions:
+                    - key: app
+                      operator: In
+                      values:
+                        - tomcat
+                    - key: name
+                      operator: In
+                      values:
+                        - purchase
+                topologyKey: "kubernetes.io/hostname"
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            - labelSelector:
+                matchExpressions:
+                  - key: name
+                    operator: In
+                    values:
+                      - purchase
+              topologyKey: "kubernetes.io/hostname"
+      containers:
+        - image: 381492042252.dkr.ecr.ap-northeast-2.amazonaws.com/nginx-purchase:v1.0
+          name: purchase
+          ports:
+            - containerPort: 80
+          volumeMounts:
+            - mountPath: "/usr/share/nginx/html/data"
+              name: html
+          resources:
+            limits:
+              cpu: 200m
+              memory: 250Mi
+            requests:
+              cpu: 100m
+              memory: 150Mi
+          livenessProbe:
+            httpGet:
+              path: /purchase.jsp
+              port: 80
+            initialDelaySeconds: 60
+            periodSeconds: 60
+            timeoutSeconds: 5
+            successThreshold: 1
+            failureThreshold: 3
+      volumes:
+        - name: html
+          persistentVolumeClaim:
+            claimName: pvc-nginx
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deploy-join
+  namespace: nginx
+  annotations:
+    kubernetes.io/change-cause: first_version
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nginx
+      name: join
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+  template:
+    metadata:
+      labels:
+        app: nginx
+        name: join
+    spec:
+      affinity:
+        podAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+            - weight: 100
+              podAffinityTerm:
+                labelSelector:
+                  matchExpressions:
+                    - key: app
+                      operator: In
+                      values:
+                        - tomcat
+                    - key: name
+                      operator: In
+                      values:
+                        - join
+                topologyKey: "kubernetes.io/hostname"
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            - labelSelector:
+                matchExpressions:
+                  - key: name
+                    operator: In
+                    values:
+                      - join
+              topologyKey: "kubernetes.io/hostname"
+      containers:
+        - image: 381492042252.dkr.ecr.ap-northeast-2.amazonaws.com/nginx-join:v1.0
+          name: join
+          ports:
+            - containerPort: 80
+          volumeMounts:
+            - mountPath: "/usr/share/nginx/html/data"
+              name: html
+          resources:
+            limits:
+              cpu: 200m
+              memory: 250Mi
+            requests:
+              cpu: 100m
+              memory: 150Mi
+          livenessProbe:
+            httpGet:
+              path: /join.jsp
+              port: 80
+            initialDelaySeconds: 60
+            periodSeconds: 60
+            timeoutSeconds: 5
+            successThreshold: 1
+            failureThreshold: 3
+      volumes:
+        - name: html
+          persistentVolumeClaim:
+            claimName: pvc-nginx
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deploy-login
+  namespace: nginx
+  annotations:
+    kubernetes.io/change-cause: first_version
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nginx
+      name: login
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+  template:
+    metadata:
+      labels:
+        app: nginx
+        name: login
+    spec:
+      affinity:
+        podAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+            - weight: 100
+              podAffinityTerm:
+                labelSelector:
+                  matchExpressions:
+                    - key: app
+                      operator: In
+                      values:
+                        - tomcat
+                    - key: name
+                      operator: In
+                      values:
+                        - login
+                topologyKey: "kubernetes.io/hostname"
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            - labelSelector:
+                matchExpressions:
+                  - key: name
+                    operator: In
+                    values:
+                      - login
+              topologyKey: "kubernetes.io/hostname"
+      containers:
+        - image: 381492042252.dkr.ecr.ap-northeast-2.amazonaws.com/nginx-login:v1.0
+          name: login
+          ports:
+            - containerPort: 80
+          volumeMounts:
+            - mountPath: "/usr/share/nginx/html/data"
+              name: html
+          resources:
+            limits:
+              cpu: 200m
+              memory: 250Mi
+            requests:
+              cpu: 100m
+              memory: 150Mi
+          livenessProbe:
+            httpGet:
+              path: /login.jsp
+              port: 80
+            initialDelaySeconds: 60
+            periodSeconds: 60
+            timeoutSeconds: 5
+            successThreshold: 1
+            failureThreshold: 3
+      volumes:
+        - name: html
+          persistentVolumeClaim:
+            claimName: pvc-nginx
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deploy-mypage
+  namespace: nginx
+  annotations:
+    kubernetes.io/change-cause: first_version
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nginx
+      name: mypage
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+  template:
+    metadata:
+      labels:
+        app: nginx
+        name: mypage
+    spec:
+      affinity:
+        podAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+            - weight: 100
+              podAffinityTerm:
+                labelSelector:
+                  matchExpressions:
+                    - key: app
+                      operator: In
+                      values:
+                        - tomcat
+                    - key: name
+                      operator: In
+                      values:
+                        - mypage
+                topologyKey: "kubernetes.io/hostname"
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            - labelSelector:
+                matchExpressions:
+                  - key: name
+                    operator: In
+                    values:
+                      - mypage
+              topologyKey: "kubernetes.io/hostname"
+      containers:
+        - image: 381492042252.dkr.ecr.ap-northeast-2.amazonaws.com/nginx-mypage:v1.0
+          name: mypage
+          ports:
+            - containerPort: 80
+          volumeMounts:
+            - mountPath: "/usr/share/nginx/html/data"
+              name: html
+          resources:
+            limits:
+              cpu: 200m
+              memory: 250Mi
+            requests:
+              cpu: 100m
+              memory: 150Mi
+          livenessProbe:
+            httpGet:
+              path: /mypage.jsp
+              port: 80
+            initialDelaySeconds: 60
+            periodSeconds: 60
+            timeoutSeconds: 5
+            successThreshold: 1
+            failureThreshold: 3
+      volumes:
+        - name: html
+          persistentVolumeClaim:
+            claimName: pvc-nginx

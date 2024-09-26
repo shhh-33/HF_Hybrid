@@ -1,0 +1,437 @@
+### v1.0  ###
+#접속 빈도 : index > films purchase > join login mypage
+#추후 수정 : resources, RollingUpdate, affinity weight, livenessProbe
+#수정 여부 : X
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deploy-index
+  namespace: nginx
+  annotations:
+    kubernetes.io/change-cause: first_version
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nginx
+      name: index
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+  template:
+    metadata:
+      labels:
+        app: nginx
+        name: index
+    spec:
+      affinity:
+        podAffinity:
+          #preferredDuringSchedulingIgnoredDuringExecution
+          requiredDuringSchedulingIgnoredDuringExecution:
+            - labelSelector:
+                matchExpressions:
+                  - key: app
+                    operator: In
+                    values:
+                      - tomcat
+                  - key: name
+                    operator: In
+                    values:
+                      - index
+              topologyKey: "kubernetes.io/hostname" #topology.kubernetes.io/zone
+              namespaces:
+                - tomcat
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            - labelSelector:
+                matchExpressions:
+                  - key: name
+                    operator: In
+                    values:
+                      - index
+              topologyKey: "kubernetes.io/hostname"
+      containers:
+        - image: chae45/nginx-index:v1.0
+          name: index
+          ports:
+            - containerPort: 80
+          resources:
+            limits:
+              cpu: 200m
+              memory: 250Mi
+            requests:
+              cpu: 200m
+              memory: 250Mi
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 80
+            initialDelaySeconds: 60
+            periodSeconds: 60
+            timeoutSeconds: 1
+            successThreshold: 1
+            failureThreshold: 3
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deploy-films
+  namespace: nginx
+  annotations:
+    kubernetes.io/change-cause: first_version
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nginx
+      name: films
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+  template:
+    metadata:
+      labels:
+        app: nginx
+        name: films
+    spec:
+      affinity:
+        podAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            - labelSelector:
+                matchExpressions:
+                  - key: app
+                    operator: In
+                    values:
+                      - tomcat
+                  - key: name
+                    operator: In
+                    values:
+                      - films
+              topologyKey: "kubernetes.io/hostname"
+              namespaces:
+                - tomcat
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            - labelSelector:
+                matchExpressions:
+                  - key: name
+                    operator: In
+                    values:
+                      - films
+              topologyKey: "kubernetes.io/hostname"
+      containers:
+        - image: chae45/nginx-films:v1.0
+          name: films
+          ports:
+            - containerPort: 80
+          resources:
+            limits:
+              cpu: 200m
+              memory: 250Mi
+            requests:
+              cpu: 200m
+              memory: 250Mi
+          livenessProbe:
+            httpGet:
+              path: /films.jsp
+              port: 80
+            initialDelaySeconds: 60
+            periodSeconds: 60
+            timeoutSeconds: 1
+            successThreshold: 1
+            failureThreshold: 3
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deploy-purchase
+  namespace: nginx
+  annotations:
+    kubernetes.io/change-cause: first_version
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nginx
+      name: purchase
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+  template:
+    metadata:
+      labels:
+        app: nginx
+        name: purchase
+    spec:
+      affinity:
+        podAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            - labelSelector:
+                matchExpressions:
+                  - key: app
+                    operator: In
+                    values:
+                      - tomcat
+                  - key: name
+                    operator: In
+                    values:
+                      - purchase
+              topologyKey: "kubernetes.io/hostname"
+              namespaces:
+                - tomcat
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            - labelSelector:
+                matchExpressions:
+                  - key: name
+                    operator: In
+                    values:
+                      - purchase
+              topologyKey: "kubernetes.io/hostname"
+      containers:
+        - image: chae45/nginx-purchase:v1.0
+          name: purchase
+          ports:
+            - containerPort: 80
+          resources:
+            limits:
+              cpu: 200m
+              memory: 250Mi
+            requests:
+              cpu: 100m
+              memory: 150Mi
+          livenessProbe:
+            httpGet:
+              path: /purchase.jsp
+              port: 80
+            initialDelaySeconds: 60
+            periodSeconds: 60
+            timeoutSeconds: 1
+            successThreshold: 1
+            failureThreshold: 3
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deploy-join
+  namespace: nginx
+  annotations:
+    kubernetes.io/change-cause: first_version
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nginx
+      name: join
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+  template:
+    metadata:
+      labels:
+        app: nginx
+        name: join
+    spec:
+      affinity:
+        podAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            - labelSelector:
+                matchExpressions:
+                  - key: app
+                    operator: In
+                    values:
+                      - tomcat
+                  - key: name
+                    operator: In
+                    values:
+                      - join
+              topologyKey: "kubernetes.io/hostname"
+              namespaces:
+                - tomcat
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            - labelSelector:
+                matchExpressions:
+                  - key: name
+                    operator: In
+                    values:
+                      - join
+              topologyKey: "kubernetes.io/hostname"
+      containers:
+        - image: chae45/nginx-join:v1.0
+          name: join
+          ports:
+            - containerPort: 80
+          resources:
+            limits:
+              cpu: 200m
+              memory: 250Mi
+            requests:
+              cpu: 100m
+              memory: 150Mi
+          livenessProbe:
+            httpGet:
+              path: /join.jsp
+              port: 80
+            initialDelaySeconds: 60
+            periodSeconds: 60
+            timeoutSeconds: 1
+            successThreshold: 1
+            failureThreshold: 3
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deploy-login
+  namespace: nginx
+  annotations:
+    kubernetes.io/change-cause: first_version
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nginx
+      name: login
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+  template:
+    metadata:
+      labels:
+        app: nginx
+        name: login
+    spec:
+      affinity:
+        podAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            - labelSelector:
+                matchExpressions:
+                  - key: app
+                    operator: In
+                    values:
+                      - tomcat
+                  - key: name
+                    operator: In
+                    values:
+                      - login
+              topologyKey: "kubernetes.io/hostname"
+              namespaces:
+                - tomcat
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            - labelSelector:
+                matchExpressions:
+                  - key: name
+                    operator: In
+                    values:
+                      - login
+              topologyKey: "kubernetes.io/hostname"
+      containers:
+        - image: chae45/nginx-login:v1.0
+          name: login
+          ports:
+            - containerPort: 80
+          resources:
+            limits:
+              cpu: 200m
+              memory: 250Mi
+            requests:
+              cpu: 100m
+              memory: 150Mi
+          livenessProbe:
+            httpGet:
+              path: /login.jsp
+              port: 80
+            initialDelaySeconds: 60
+            periodSeconds: 60
+            timeoutSeconds: 1
+            successThreshold: 1
+            failureThreshold: 3
+
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deploy-mypage
+  namespace: nginx
+  annotations:
+    kubernetes.io/change-cause: first_version
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nginx
+      name: mypage
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+  template:
+    metadata:
+      labels:
+        app: nginx
+        name: mypage
+    spec:
+      affinity:
+        podAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            - labelSelector:
+                matchExpressions:
+                  - key: app
+                    operator: In
+                    values:
+                      - tomcat
+                  - key: name
+                    operator: In
+                    values:
+                      - mypage
+              topologyKey: "kubernetes.io/hostname"
+              namespaces:
+                - tomcat
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            - labelSelector:
+                matchExpressions:
+                  - key: name
+                    operator: In
+                    values:
+                      - mypage
+              topologyKey: "kubernetes.io/hostname"
+      containers:
+        - image: chae45/nginx-mypage:v1.0
+          name: mypage
+          ports:
+            - containerPort: 80
+          resources:
+            limits:
+              cpu: 200m
+              memory: 250Mi
+            requests:
+              cpu: 100m
+              memory: 150Mi
+          livenessProbe:
+            httpGet:
+              path: /mypage.jsp
+              port: 80
+            initialDelaySeconds: 60
+            periodSeconds: 60
+            timeoutSeconds: 1
+            successThreshold: 1
+            failureThreshold: 3
+

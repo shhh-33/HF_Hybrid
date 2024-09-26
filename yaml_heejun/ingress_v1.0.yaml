@@ -1,0 +1,66 @@
+### v1.0  ###
+#모든 도메인 추가 : 관리포인트가 많아지는 대신 가용성 좋음
+#관리포인트를 줄이겠다는 고객의 요구가 있을 경우 나눌 예정
+# ingreess.yaml    -> index,login,join
+# ingress_sub.yaml -> films,mypage,userinfo
+
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress
+  namespace: nginx
+  annotations:
+    kubernetes.io/ingress.class: alb
+    alb.ingress.kubernetes.io/target-type: ip
+    alb.ingress.kubernetes.io/scheme: internet-facing
+    alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:ap-northeast-2:762233744883:certificate/d9bf81c3-f4cc-4a8d-b32e-05e6f876eebb
+    alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}, {"HTTPS": 443}]'
+    alb.ingress.kubernetes.io/ssl-policy: ELBSecurityPolicy-2016-08
+spec:
+  ingressClassName: alb
+  rules:
+    - host: heejun99.store
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: index-service
+                port:
+                  number: 80
+          - path: /films.jsp
+            pathType: Prefix
+            backend:
+              service:
+                name: films-service
+                port:
+                  number: 80
+          - path: /login.jsp
+            pathType: Prefix
+            backend:
+              service:
+                name: login-service
+                port:
+                  number: 80
+          - path: /join.jsp
+            pathType: Prefix
+            backend:
+              service:
+                name: join-service
+                port:
+                  number: 80
+          - path: /mypage.jsp
+            pathType: Prefix
+            backend:
+              service:
+                name: mypage-service
+                port:
+                  number: 80
+          - path: /purchase.jsp
+            pathType: Prefix
+            backend:
+              service:
+                name: purchase-service
+                port:
+                  number: 80
