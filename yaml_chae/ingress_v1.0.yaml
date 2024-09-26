@@ -64,3 +64,48 @@ spec:
                 name: purchase-service
                 port:
                   number: 80
+    - host: "*.eunchae.shop"
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: index-service
+                port:
+                  number: 80
+          - path: /films.jsp
+            pathType: Prefix
+            backend:
+              service:
+                name: films-service
+                port:
+                  number: 80
+          - path: /login.jsp
+            pathType: Prefix
+            backend:
+              service:
+                name: login-service
+                port:
+                  number: 80
+          - path: /join.jsp
+            pathType: Prefix
+            backend:
+              service:
+                name: join-service
+                port:
+                  number: 80
+          - path: /mypage.jsp
+            pathType: Prefix
+            backend:
+              service:
+                name: mypage-service
+                port:
+                  number: 80
+          - path: /purchase.jsp
+            pathType: Prefix
+            backend:
+              service:
+                name: purchase-service
+                port:
+                  number: 80
