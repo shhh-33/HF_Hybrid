@@ -1,7 +1,6 @@
 ### v1.0  ###
 #접속 빈도 : index > films purchase > join login mypage
 #추후 수정 : maxReplicas
-#수정 여부 : X
 
 apiVersion: autoscaling/v1
 kind: HorizontalPodAutoscaler
