@@ -1,0 +1,53 @@
+# Stage 1: Build stage
+FROM alpine:3.14 AS build
+
+ENV TOMCAT_VERSION=9.0.93
+ENV CATALINA_HOME=/opt/tomcat
+
+RUN apk update && \
+    apk add --no-cache wget tar openjdk8-jre && \
+    rm -rf /var/cache/apk/*
+
+RUN mkdir $CATALINA_HOME
+RUN wget https://archive.apache.org/dist/tomcat/tomcat-9/v${TOMCAT_VERSION}/bin/apache-tomcat-${TOMCAT_VERSION}.tar.gz -O /tmp/tomcat.tar.gz
+RUN cd /tmp && tar xvfz tomcat.tar.gz \
+        && cp -Rv /tmp/apache-tomcat-${TOMCAT_VERSION}/* $CATALINA_HOME \
+        && rm -rf /tmp/apache-tomcat-${TOMCAT_VERSION} \
+        && rm -rf /tmp/tomcat.tar.gz \
+        && wget https://repo1.maven.org/maven2/org/mariadb/jdbc/mariadb-java-client/2.7.2/mariadb-java-client-2.7.2.jar -P $CATALINA_HOME/lib
+
+RUN rm -rf $CATALINA_HOME/webapps/* \
+    && rm -rf $CATALINA_HOME/bin/*.bat \
+    && rm -rf $CATALINA_HOME/bin/*.tar.gz \
+    && rm -rf $CATALINA_HOME/bin/*.md5 \
+    && rm -rf $CATALINA_HOME/bin/*.sha512
+
+RUN mkdir $CATALINA_HOME/webapps/ROOT && \
+wget https://github.com/ran-jit/tomcat-cluster-redis-session-manager/releases/download/2.0.4/tomcat-cluster-redis-session-manager.zip && \
+unzip tomcat-cluster-redis-session-manager.zip -d $CATALINA_HOME && \
+mv $CATALINA_HOME/tomcat-cluster-redis-session-manager/lib/* $CATALINA_HOME/lib/ && \
+mv $CATALINA_HOME/tomcat-cluster-redis-session-manager/conf/* $CATALINA_HOME/conf/
+
+COPY ./redis-data-cache.properties $CATALINA_HOME/conf/
+COPY ./context.xml /$CATALINA_HOME/conf/
+COPY ./web.xml /$CATALINA_HOME/conf/
+
+COPY ./login2.jsp $CATALINA_HOME/webapps/ROOT/login.jsp
+COPY ./WEB-INF /opt/tomcat/webapps/ROOT/WEB-INF
+
+# Stage 2 : 
+FROM alpine:3.14
+
+RUN apk add --no-cache openjdk8-jre-base && \
+    rm -rf /var/cache/apk/*
+    
+ENV CATALINA_HOME=/opt/tomcat
+RUN apk add --no-cache tzdata
+ENV TZ=Asia/Seoul
+    
+COPY --from=build $CATALINA_HOME $CATALINA_HOME
+    
+EXPOSE 8080
+    
+CMD ["/opt/tomcat/bin/catalina.sh", "run"]
+    

@@ -1,0 +1,32 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: pv-nginx
+spec:
+  capacity:
+    storage: 5Gi
+  volumeMode: Filesystem
+  accessModes:
+    - ReadWriteMany
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: hf-efs-sc
+  csi:
+    driver: efs.csi.aws.com
+    volumeHandle: fs-0980976677738f0e1
+
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: pv-tomcat
+spec:
+  capacity:
+    storage: 7Gi
+  volumeMode: Filesystem
+  accessModes:
+    - ReadWriteMany
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: hf-efs-sc
+  csi:
+    driver: efs.csi.aws.com
+    volumeHandle: fs-0980976677738f0e1
