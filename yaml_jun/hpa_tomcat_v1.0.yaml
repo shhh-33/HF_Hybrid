@@ -10,11 +10,11 @@ metadata:
   namespace: tomcat
 spec:
   maxReplicas: 10
-  minReplicas: 1
+  minReplicas: 2
   scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment
-    name: deploy-index
+    name: tomcat-index
   targetCPUUtilizationPercentage: 50
 
 ---
@@ -25,11 +25,11 @@ metadata:
   namespace: tomcat
 spec:
   maxReplicas: 10
-  minReplicas: 1
+  minReplicas: 2
   scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment
-    name: deploy-films
+    name: tomcat-films
   targetCPUUtilizationPercentage: 50
 
 ---
@@ -40,11 +40,11 @@ metadata:
   namespace: tomcat
 spec:
   maxReplicas: 10
-  minReplicas: 1
+  minReplicas: 2
   scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment
-    name: deploy-purchase
+    name: tomcat-purchase
   targetCPUUtilizationPercentage: 50
 
 ---
@@ -55,11 +55,11 @@ metadata:
   namespace: tomcat
 spec:
   maxReplicas: 10
-  minReplicas: 1
+  minReplicas: 2
   scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment
-    name: deploy-login
+    name: tomcat-login
   targetCPUUtilizationPercentage: 50
 
 ---
@@ -70,11 +70,11 @@ metadata:
   namespace: tomcat
 spec:
   maxReplicas: 10
-  minReplicas: 1
+  minReplicas: 2
   scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment
-    name: deploy-join
+    name: tomcat-join
   targetCPUUtilizationPercentage: 50
 
 ---
@@ -85,9 +85,9 @@ metadata:
   namespace: tomcat
 spec:
   maxReplicas: 10
-  minReplicas: 1
+  minReplicas: 2
   scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment
-    name: deploy-mypage
+    name: tomcat-mypage
   targetCPUUtilizationPercentage: 50

@@ -23,8 +23,8 @@
 
     // 공통 JDBC 드라이버 정보
     String jdbcDriver = "com.mysql.jdbc.Driver";
-    String jdbcUrl = "jdbc:mysql://localhost:3306/test";
-    String dbUser = "root";
+    String jdbcUrl = "jdbc:mysql://hf-database20240926012725794400000001.c126s0qkizg5.ap-northeast-2.rds.amazonaws.com:3306/test";
+    String dbUser = "hf";
     String dbPass = "1234";
 
     Connection conn = null; // 중복 선언 방지

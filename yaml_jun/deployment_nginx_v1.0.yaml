@@ -12,7 +12,7 @@ metadata:
   annotations:
     kubernetes.io/change-cause: first_version
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
       app: nginx
@@ -30,20 +30,20 @@ spec:
     spec:
       affinity:
         podAffinity:
-          preferredDuringSchedulingIgnoredDuringExecution:
-            - weight: 100
-              podAffinityTerm:
-                labelSelector:
-                  matchExpressions:
-                    - key: app
-                      operator: In
-                      values:
-                        - tomcat
-                    - key: name
-                      operator: In
-                      values:
-                        - index
-                topologyKey: "kubernetes.io/hostname"
+          requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchExpressions:
+              - key: app
+                operator: In
+                values:
+                - tomcat
+              - key: name
+                operator: In
+                values:
+                - index
+            topologyKey: "kubernetes.io/hostname"
+            namespaces:
+            - tomcat
         podAntiAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:
             - labelSelector:
@@ -91,7 +91,7 @@ metadata:
   annotations:
     kubernetes.io/change-cause: first_version
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
       app: nginx
@@ -109,20 +109,20 @@ spec:
     spec:
       affinity:
         podAffinity:
-          preferredDuringSchedulingIgnoredDuringExecution:
-            - weight: 100
-              podAffinityTerm:
-                labelSelector:
-                  matchExpressions:
-                    - key: app
-                      operator: In
-                      values:
-                        - tomcat
-                    - key: name
-                      operator: In
-                      values:
-                        - films
-                topologyKey: "kubernetes.io/hostname"
+          requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchExpressions:
+              - key: app
+                operator: In
+                values:
+                - tomcat
+              - key: name
+                operator: In
+                values:
+                - films
+            topologyKey: "kubernetes.io/hostname"
+            namespaces:
+            - tomcat
         podAntiAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:
             - labelSelector:
@@ -170,7 +170,7 @@ metadata:
   annotations:
     kubernetes.io/change-cause: first_version
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
       app: nginx
@@ -188,20 +188,20 @@ spec:
     spec:
       affinity:
         podAffinity:
-          preferredDuringSchedulingIgnoredDuringExecution:
-            - weight: 100
-              podAffinityTerm:
-                labelSelector:
-                  matchExpressions:
-                    - key: app
-                      operator: In
-                      values:
-                        - tomcat
-                    - key: name
-                      operator: In
-                      values:
-                        - purchase
-                topologyKey: "kubernetes.io/hostname"
+          requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchExpressions:
+              - key: app
+                operator: In
+                values:
+                - tomcat
+              - key: name
+                operator: In
+                values:
+                - purchase
+            topologyKey: "kubernetes.io/hostname"
+            namespaces:
+            - tomcat
         podAntiAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:
             - labelSelector:
@@ -249,7 +249,7 @@ metadata:
   annotations:
     kubernetes.io/change-cause: first_version
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
       app: nginx
@@ -267,20 +267,20 @@ spec:
     spec:
       affinity:
         podAffinity:
-          preferredDuringSchedulingIgnoredDuringExecution:
-            - weight: 100
-              podAffinityTerm:
-                labelSelector:
-                  matchExpressions:
-                    - key: app
-                      operator: In
-                      values:
-                        - tomcat
-                    - key: name
-                      operator: In
-                      values:
-                        - join
-                topologyKey: "kubernetes.io/hostname"
+          requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchExpressions:
+              - key: app
+                operator: In
+                values:
+                - tomcat
+              - key: name
+                operator: In
+                values:
+                - join
+            topologyKey: "kubernetes.io/hostname"
+            namespaces:
+            - tomcat
         podAntiAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:
             - labelSelector:
@@ -328,7 +328,7 @@ metadata:
   annotations:
     kubernetes.io/change-cause: first_version
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
       app: nginx
@@ -346,20 +346,20 @@ spec:
     spec:
       affinity:
         podAffinity:
-          preferredDuringSchedulingIgnoredDuringExecution:
-            - weight: 100
-              podAffinityTerm:
-                labelSelector:
-                  matchExpressions:
-                    - key: app
-                      operator: In
-                      values:
-                        - tomcat
-                    - key: name
-                      operator: In
-                      values:
-                        - login
-                topologyKey: "kubernetes.io/hostname"
+          requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchExpressions:
+              - key: app
+                operator: In
+                values:
+                - tomcat
+              - key: name
+                operator: In
+                values:
+                - login
+            topologyKey: "kubernetes.io/hostname"
+            namespaces:
+            - tomcat
         podAntiAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:
             - labelSelector:
@@ -407,7 +407,7 @@ metadata:
   annotations:
     kubernetes.io/change-cause: first_version
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
       app: nginx
@@ -425,20 +425,20 @@ spec:
     spec:
       affinity:
         podAffinity:
-          preferredDuringSchedulingIgnoredDuringExecution:
-            - weight: 100
-              podAffinityTerm:
-                labelSelector:
-                  matchExpressions:
-                    - key: app
-                      operator: In
-                      values:
-                        - tomcat
-                    - key: name
-                      operator: In
-                      values:
-                        - mypage
-                topologyKey: "kubernetes.io/hostname"
+          requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchExpressions:
+              - key: app
+                operator: In
+                values:
+                - tomcat
+              - key: name
+                operator: In
+                values:
+                - mypage
+            topologyKey: "kubernetes.io/hostname"
+            namespaces:
+            - tomcat
         podAntiAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:
             - labelSelector:
