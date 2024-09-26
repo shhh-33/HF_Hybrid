@@ -230,7 +230,7 @@ spec:
               app: tomcat
               name: purchase
       containers:
-        - image: 381492042252.dkr.ecr.ap-northeast-2.amazonaws.com/tomcat-purchase:v2.0
+        - image: 381492042252.dkr.ecr.ap-northeast-2.amazonaws.com/tomcat-purchase:v3.0
           name: tomcat-purchase-deploy
           ports:
             - containerPort: 8080
