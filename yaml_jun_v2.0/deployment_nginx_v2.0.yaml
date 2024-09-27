@@ -66,11 +66,11 @@ spec:
               name: html
           resources:
             limits:
-              cpu: 200m
-              memory: 250Mi
+              cpu: 100m
+              memory: 150Mi
             requests:
-              cpu: 200m
-              memory: 250Mi
+              cpu: 100m
+              memory: 150Mi
           livenessProbe:
             httpGet:
               path: /
@@ -145,11 +145,11 @@ spec:
               name: html
           resources:
             limits:
-              cpu: 200m
-              memory: 250Mi
+              cpu: 100m
+              memory: 150Mi
             requests:
-              cpu: 200m
-              memory: 250Mi
+              cpu: 100m
+              memory: 150Mi
           livenessProbe:
             httpGet:
               path: /films.jsp
@@ -224,8 +224,8 @@ spec:
               name: html
           resources:
             limits:
-              cpu: 200m
-              memory: 250Mi
+              cpu: 100m
+              memory: 150Mi
             requests:
               cpu: 100m
               memory: 150Mi
@@ -303,8 +303,8 @@ spec:
               name: html
           resources:
             limits:
-              cpu: 200m
-              memory: 250Mi
+              cpu: 100m
+              memory: 150Mi
             requests:
               cpu: 100m
               memory: 150Mi
@@ -382,8 +382,8 @@ spec:
               name: html
           resources:
             limits:
-              cpu: 200m
-              memory: 250Mi
+              cpu: 100m
+              memory: 150Mi
             requests:
               cpu: 100m
               memory: 150Mi
@@ -461,8 +461,8 @@ spec:
               name: html
           resources:
             limits:
-              cpu: 200m
-              memory: 250Mi
+              cpu: 100m
+              memory: 150Mi
             requests:
               cpu: 100m
               memory: 150Mi
@@ -542,8 +542,8 @@ spec:
               name: html
           resources:
             limits:
-              cpu: 200m
-              memory: 250Mi
+              cpu: 100m
+              memory: 150Mi
             requests:
               cpu: 100m
               memory: 150Mi
@@ -622,8 +622,8 @@ spec:
               name: html
           resources:
             limits:
-              cpu: 200m
-              memory: 250Mi
+              cpu: 100m
+              memory: 150Mi
             requests:
               cpu: 100m
               memory: 150Mi
@@ -702,8 +702,8 @@ spec:
               name: html
           resources:
             limits:
-              cpu: 200m
-              memory: 250Mi
+              cpu: 100m
+              memory: 150Mi
             requests:
               cpu: 100m
               memory: 150Mi
@@ -782,8 +782,8 @@ spec:
               name: html
           resources:
             limits:
-              cpu: 200m
-              memory: 250Mi
+              cpu: 100m
+              memory: 150Mi
             requests:
               cpu: 100m
               memory: 150Mi
