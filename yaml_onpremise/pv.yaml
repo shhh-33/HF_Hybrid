@@ -1,0 +1,30 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: pv-nginx
+spec:
+  capacity:
+    storage: 5Gi
+  volumeMode: Filesystem
+  accessModes:
+    - ReadWriteMany
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: pv-nginx
+  hostPath:
+    path: /hostpath/nginx
+
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: pv-tomcat
+spec:
+  capacity:
+    storage: 7Gi
+  volumeMode: Filesystem
+  accessModes:
+    - ReadWriteMany
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: pv-tomcat
+  hostPath:
+    path: /hostpath/tomcat
