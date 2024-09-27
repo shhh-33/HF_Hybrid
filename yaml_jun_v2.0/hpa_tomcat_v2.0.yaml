@@ -15,7 +15,7 @@ spec:
     apiVersion: apps/v1
     kind: Deployment
     name: tomcat-index
-  targetCPUUtilizationPercentage: 50
+  targetCPUUtilizationPercentage: 60
 
 ---
 apiVersion: autoscaling/v1
@@ -30,7 +30,7 @@ spec:
     apiVersion: apps/v1
     kind: Deployment
     name: tomcat-films
-  targetCPUUtilizationPercentage: 50
+  targetCPUUtilizationPercentage: 60
 
 ---
 apiVersion: autoscaling/v1
@@ -45,7 +45,7 @@ spec:
     apiVersion: apps/v1
     kind: Deployment
     name: tomcat-purchase
-  targetCPUUtilizationPercentage: 50
+  targetCPUUtilizationPercentage: 60
 
 
 
@@ -123,7 +123,7 @@ spec:
     apiVersion: apps/v1
     kind: Deployment
     name: tomcat-userinfo
-  targetCPUUtilizationPercentage: 50
+  targetCPUUtilizationPercentage: 60
 
 ---
 apiVersion: autoscaling/v1
