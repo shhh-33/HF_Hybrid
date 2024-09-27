@@ -41,7 +41,7 @@ spec:
                 operator: In
                 values:
                 - index
-            topologyKey: kubernetes.io/hostname
+            topologyKey: "kubernetes.io/hostname"
             namespaces:
             - tomcat
         podAntiAffinity:
@@ -52,7 +52,7 @@ spec:
                     operator: In
                     values:
                       - index
-              topologyKey: kubernetes.io/hostname
+              topologyKey: "kubernetes.io/hostname"
       containers:
         - image: ehddlf5709/nginx-index:v1.0
           name: index
@@ -120,7 +120,7 @@ spec:
                 operator: In
                 values:
                 - films
-            topologyKey: kubernetes.io/hostname
+            topologyKey: "kubernetes.io/hostname"
             namespaces:
             - tomcat
         podAntiAffinity:
@@ -131,7 +131,7 @@ spec:
                     operator: In
                     values:
                       - films
-              topologyKey: kubernetes.io/hostname
+              topologyKey: "kubernetes.io/hostname"
       containers:
         - image: ehddlf5709/nginx-films:v1.0
           name: films
@@ -199,7 +199,7 @@ spec:
                 operator: In
                 values:
                 - purchase
-            topologyKey: kubernetes.io/hostname
+            topologyKey: "kubernetes.io/hostname"
             namespaces:
             - tomcat
         podAntiAffinity:
@@ -210,7 +210,7 @@ spec:
                     operator: In
                     values:
                       - purchase
-              topologyKey: kubernetes.io/hostname
+              topologyKey: "kubernetes.io/hostname"
       containers:
         - image: ehddlf5709/nginx-purchase:v1.0
           name: purchase
@@ -278,7 +278,7 @@ spec:
                 operator: In
                 values:
                 - join
-            topologyKey: kubernetes.io/hostname
+            topologyKey: "kubernetes.io/hostname"
             namespaces:
             - tomcat
         podAntiAffinity:
@@ -289,7 +289,7 @@ spec:
                     operator: In
                     values:
                       - join
-              topologyKey: kubernetes.io/hostname
+              topologyKey: "kubernetes.io/hostname"
       containers:
         - image: ehddlf5709/nginx-join:v1.0
           name: join
@@ -357,7 +357,7 @@ spec:
                 operator: In
                 values:
                 - login
-            topologyKey: kubernetes.io/hostname
+            topologyKey: "kubernetes.io/hostname"
             namespaces:
             - tomcat
         podAntiAffinity:
@@ -368,7 +368,7 @@ spec:
                     operator: In
                     values:
                       - login
-              topologyKey: kubernetes.io/hostname
+              topologyKey: "kubernetes.io/hostname"
       containers:
         - image: ehddlf5709/nginx-login:v1.0
           name: login
@@ -436,7 +436,7 @@ spec:
                 operator: In
                 values:
                 - mypage
-            topologyKey: kubernetes.io/hostname
+            topologyKey: "kubernetes.io/hostname"
             namespaces:
             - tomcat
         podAntiAffinity:
@@ -447,7 +447,7 @@ spec:
                     operator: In
                     values:
                       - mypage
-              topologyKey: kubernetes.io/hostname
+              topologyKey: "kubernetes.io/hostname"
       containers:
         - image: ehddlf5709/nginx-mypage:v1.0
           name: mypage

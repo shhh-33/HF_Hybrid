@@ -43,17 +43,17 @@ spec:
                       operator: In
                       values:
                         - index
-                topologyKey: kubernetes.io/hostname
+                topologyKey: "kubernetes.io/hostname"
       topologySpreadConstraints:
         - maxSkew: 1
-          topologyKey: kubernetes.io/hostname
+          topologyKey: "kubernetes.io/hostname"
           whenUnsatisfiable: DoNotSchedule
           labelSelector:
             matchLabels:
               app: tomcat
               name: index
         - maxSkew: 1
-          topologyKey: kubernetes.io/hostname
+          topologyKey: "kubernetes.io/hostname"
           whenUnsatisfiable: DoNotSchedule
           labelSelector:
             matchLabels:
@@ -128,17 +128,17 @@ spec:
                       operator: In
                       values:
                         - films
-                topologyKey: topology.kubernetes.io/hostname
+                topologyKey: "kubernetes.io/hostname"
       topologySpreadConstraints:
         - maxSkew: 1
-          topologyKey: kubernetes.io/hostname
+          topologyKey: "kubernetes.io/hostname"
           whenUnsatisfiable: DoNotSchedule
           labelSelector:
             matchLabels:
               app: tomcat
               name: films
         - maxSkew: 1
-          topologyKey: kubernetes.io/hostname
+          topologyKey: "kubernetes.io/hostname"
           whenUnsatisfiable: DoNotSchedule
           labelSelector:
             matchLabels:
@@ -213,17 +213,17 @@ spec:
                       operator: In
                       values:
                         - purchase
-                topologyKey: topology.kubernetes.io/hostname
+                topologyKey: "kubernetes.io/hostname"
       topologySpreadConstraints:
         - maxSkew: 1
-          topologyKey: kubernetes.io/hostname
+          topologyKey: "kubernetes.io/hostname"
           whenUnsatisfiable: DoNotSchedule
           labelSelector:
             matchLabels:
               app: tomcat
               name: purchase
         - maxSkew: 1
-          topologyKey: kubernetes.io/hostname
+          topologyKey: "kubernetes.io/hostname"
           whenUnsatisfiable: DoNotSchedule
           labelSelector:
             matchLabels:
@@ -299,17 +299,17 @@ spec:
                       operator: In
                       values:
                         - join
-                topologyKey: topology.kubernetes.io/hostname
+                topologyKey: "kubernetes.io/hostname"
       topologySpreadConstraints:
         - maxSkew: 1
-          topologyKey: kubernetes.io/hostname
+          topologyKey: "kubernetes.io/hostname"
           whenUnsatisfiable: DoNotSchedule
           labelSelector:
             matchLabels:
               app: tomcat
               name: join
         - maxSkew: 1
-          topologyKey: kubernetes.io/hostname
+          topologyKey: "kubernetes.io/hostname"
           whenUnsatisfiable: DoNotSchedule
           labelSelector:
             matchLabels:
@@ -384,17 +384,17 @@ spec:
                       operator: In
                       values:
                         - login
-                topologyKey: topology.kubernetes.io/hostname
+                topologyKey: "kubernetes.io/hostname"
       topologySpreadConstraints:
         - maxSkew: 1
-          topologyKey: kubernetes.io/hostname
+          topologyKey: "kubernetes.io/hostname"
           whenUnsatisfiable: DoNotSchedule
           labelSelector:
             matchLabels:
               app: tomcat
               name: login
         - maxSkew: 1
-          topologyKey: kubernetes.io/hostname
+          topologyKey: "kubernetes.io/hostname"
           whenUnsatisfiable: DoNotSchedule
           labelSelector:
             matchLabels:
@@ -469,17 +469,17 @@ spec:
                       operator: In
                       values:
                         - mypage
-                topologyKey: topology.kubernetes.io/hostname
+                topologyKey: "kubernetes.io/hostname"
       topologySpreadConstraints:
         - maxSkew: 1
-          topologyKey: kubernetes.io/hostname
+          topologyKey: "kubernetes.io/hostname"
           whenUnsatisfiable: DoNotSchedule
           labelSelector:
             matchLabels:
               app: tomcat
               name: mypage
         - maxSkew: 1
-          topologyKey: kubernetes.io/hostname
+          topologyKey: "kubernetes.io/hostname"
           whenUnsatisfiable: DoNotSchedule
           labelSelector:
             matchLabels:
