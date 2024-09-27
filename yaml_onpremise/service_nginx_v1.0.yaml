@@ -7,7 +7,7 @@ metadata:
   namespace: nginx
 spec:
   type: NodePort
-  clusterIP: 172.20.100.101
+  clusterIP: 10.96.100.101
   selector:
     app: nginx
     name: films
@@ -25,7 +25,7 @@ metadata:
   namespace: nginx
 spec:
   type: NodePort
-  clusterIP: 172.20.100.102
+  clusterIP: 10.96.100.102
   selector:
     app: nginx
     name: index
@@ -43,7 +43,7 @@ metadata:
   namespace: nginx
 spec:
   type: NodePort
-  clusterIP: 172.20.100.103
+  clusterIP: 10.96.100.103
   selector:
     app: nginx
     name: join
@@ -61,7 +61,7 @@ metadata:
   namespace: nginx
 spec:
   type: NodePort
-  clusterIP: 172.20.100.104
+  clusterIP: 10.96.100.104
   selector:
     app: nginx
     name: login
@@ -79,7 +79,7 @@ metadata:
   namespace: nginx
 spec:
   type: NodePort
-  clusterIP: 172.20.100.105
+  clusterIP: 10.96.100.105
   selector:
     app: nginx
     name: mypage
@@ -97,7 +97,7 @@ metadata:
   namespace: nginx
 spec:
   type: NodePort
-  clusterIP: 172.20.100.106
+  clusterIP: 10.96.100.106
   selector:
     app: nginx
     name: purchase

@@ -7,7 +7,7 @@ metadata:
   namespace: tomcat
 spec:
   type: ClusterIP
-  clusterIP: 172.20.100.111
+  clusterIP: 10.96.100.111
   selector:
     app: tomcat
     name: films
@@ -24,7 +24,7 @@ metadata:
   namespace: tomcat
 spec:
   type: ClusterIP
-  clusterIP: 172.20.100.112
+  clusterIP: 10.96.100.112
   selector:
     app: tomcat
     name: index
@@ -41,7 +41,7 @@ metadata:
   namespace: tomcat
 spec:
   type: ClusterIP
-  clusterIP: 172.20.100.113
+  clusterIP: 10.96.100.113
   selector:
     app: tomcat
     name: join
@@ -58,7 +58,7 @@ metadata:
   namespace: tomcat
 spec:
   type: ClusterIP
-  clusterIP: 172.20.100.114
+  clusterIP: 10.96.100.114
   selector:
     app: tomcat
     name: login
@@ -75,7 +75,7 @@ metadata:
   namespace: tomcat
 spec:
   type: ClusterIP
-  clusterIP: 172.20.100.115
+  clusterIP: 10.96.100.115
   selector:
     app: tomcat
     name: mypage
@@ -92,7 +92,7 @@ metadata:
   namespace: tomcat
 spec:
   type: ClusterIP
-  clusterIP: 172.20.100.116
+  clusterIP: 10.96.100.116
   selector:
     app: tomcat
     name: purchase
