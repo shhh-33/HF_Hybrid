@@ -52,13 +52,6 @@ spec:
             matchLabels:
               app: tomcat
               name: index
-        - maxSkew: 1
-          topologyKey: "kubernetes.io/hostname"
-          whenUnsatisfiable: DoNotSchedule
-          labelSelector:
-            matchLabels:
-              app: tomcat
-              name: index
       containers:
         - image: ehddlf5709/tomcat-index:v2.0 
           name: tomcat-index-deploy
@@ -137,13 +130,6 @@ spec:
             matchLabels:
               app: tomcat
               name: films
-        - maxSkew: 1
-          topologyKey: "kubernetes.io/hostname"
-          whenUnsatisfiable: DoNotSchedule
-          labelSelector:
-            matchLabels:
-              app: tomcat
-              name: films
       containers:
         - image: ehddlf5709/tomcat-films:v2.0 
           name: tomcat-films-deploy
@@ -215,13 +201,6 @@ spec:
                         - purchase
                 topologyKey: "kubernetes.io/hostname"
       topologySpreadConstraints:
-        - maxSkew: 1
-          topologyKey: "kubernetes.io/hostname"
-          whenUnsatisfiable: DoNotSchedule
-          labelSelector:
-            matchLabels:
-              app: tomcat
-              name: purchase
         - maxSkew: 1
           topologyKey: "kubernetes.io/hostname"
           whenUnsatisfiable: DoNotSchedule
@@ -308,13 +287,6 @@ spec:
             matchLabels:
               app: tomcat
               name: join
-        - maxSkew: 1
-          topologyKey: "kubernetes.io/hostname"
-          whenUnsatisfiable: DoNotSchedule
-          labelSelector:
-            matchLabels:
-              app: tomcat
-              name: join
       containers:
         - image: ehddlf5709/tomcat-join:v2.0 
           name: tomcat-join-deploy
@@ -386,13 +358,6 @@ spec:
                         - login
                 topologyKey: "kubernetes.io/hostname"
       topologySpreadConstraints:
-        - maxSkew: 1
-          topologyKey: "kubernetes.io/hostname"
-          whenUnsatisfiable: DoNotSchedule
-          labelSelector:
-            matchLabels:
-              app: tomcat
-              name: login
         - maxSkew: 1
           topologyKey: "kubernetes.io/hostname"
           whenUnsatisfiable: DoNotSchedule
@@ -478,14 +443,6 @@ spec:
             matchLabels:
               app: tomcat
               name: mypage
-        - maxSkew: 1
-          topologyKey: "kubernetes.io/hostname"
-          whenUnsatisfiable: DoNotSchedule
-          labelSelector:
-            matchLabels:
-              app: tomcat
-              name: mypage
-
       containers:
         - image: ehddlf5709/tomcat-mypage:v2.0 
           name: tomcat-mypage-deploy
