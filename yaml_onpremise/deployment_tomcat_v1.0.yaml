@@ -43,7 +43,7 @@ spec:
                       operator: In
                       values:
                         - index
-                topologyKey: "topology.kubernetes.io/zone"
+                topologyKey: "topology.kubernetes.io/hostname"
       topologySpreadConstraints:
         - maxSkew: 1
           topologyKey: "kubernetes.io/hostname"
@@ -53,7 +53,7 @@ spec:
               app: tomcat
               name: index
         - maxSkew: 1
-          topologyKey: "topology.kubernetes.io/zone"
+          topologyKey: "topology.kubernetes.io/hostname"
           whenUnsatisfiable: DoNotSchedule
           labelSelector:
             matchLabels:
@@ -128,7 +128,7 @@ spec:
                       operator: In
                       values:
                         - films
-                topologyKey: topology.kubernetes.io/zone
+                topologyKey: topology.kubernetes.io/hostname
       topologySpreadConstraints:
         - maxSkew: 1
           topologyKey: "kubernetes.io/hostname"
@@ -138,7 +138,7 @@ spec:
               app: tomcat
               name: films
         - maxSkew: 1
-          topologyKey: "topology.kubernetes.io/zone"
+          topologyKey: "topology.kubernetes.io/hostname"
           whenUnsatisfiable: DoNotSchedule
           labelSelector:
             matchLabels:
@@ -213,7 +213,7 @@ spec:
                       operator: In
                       values:
                         - purchase
-                topologyKey: topology.kubernetes.io/zone
+                topologyKey: topology.kubernetes.io/hostname
       topologySpreadConstraints:
         - maxSkew: 1
           topologyKey: "kubernetes.io/hostname"
@@ -223,7 +223,7 @@ spec:
               app: tomcat
               name: purchase
         - maxSkew: 1
-          topologyKey: "topology.kubernetes.io/zone"
+          topologyKey: "topology.kubernetes.io/hostname"
           whenUnsatisfiable: DoNotSchedule
           labelSelector:
             matchLabels:
@@ -299,7 +299,7 @@ spec:
                       operator: In
                       values:
                         - join
-                topologyKey: topology.kubernetes.io/zone
+                topologyKey: topology.kubernetes.io/hostname
       topologySpreadConstraints:
         - maxSkew: 1
           topologyKey: "kubernetes.io/hostname"
@@ -309,7 +309,7 @@ spec:
               app: tomcat
               name: join
         - maxSkew: 1
-          topologyKey: "topology.kubernetes.io/zone"
+          topologyKey: "topology.kubernetes.io/hostname"
           whenUnsatisfiable: DoNotSchedule
           labelSelector:
             matchLabels:
@@ -384,7 +384,7 @@ spec:
                       operator: In
                       values:
                         - login
-                topologyKey: topology.kubernetes.io/zone
+                topologyKey: topology.kubernetes.io/hostname
       topologySpreadConstraints:
         - maxSkew: 1
           topologyKey: "kubernetes.io/hostname"
@@ -394,7 +394,7 @@ spec:
               app: tomcat
               name: login
         - maxSkew: 1
-          topologyKey: "topology.kubernetes.io/zone"
+          topologyKey: "topology.kubernetes.io/hostname"
           whenUnsatisfiable: DoNotSchedule
           labelSelector:
             matchLabels:
@@ -469,7 +469,7 @@ spec:
                       operator: In
                       values:
                         - mypage
-                topologyKey: topology.kubernetes.io/zone
+                topologyKey: topology.kubernetes.io/hostname
       topologySpreadConstraints:
         - maxSkew: 1
           topologyKey: "kubernetes.io/hostname"
@@ -479,7 +479,7 @@ spec:
               app: tomcat
               name: mypage
         - maxSkew: 1
-          topologyKey: "topology.kubernetes.io/zone"
+          topologyKey: "topology.kubernetes.io/hostname"
           whenUnsatisfiable: DoNotSchedule
           labelSelector:
             matchLabels:
