@@ -1,6 +1,6 @@
-### v1.0  ###
-#접속 빈도 : index > films purchase > join login mypage
-#추후 수정 : maxReplicas
+### v2.0  ###
+#접속 빈도 : index > films purchase snack > join login mypage >  userinfo month lastfilms
+#추후 수정 : maxReplicas, targetCPUUtilizationPercentage
 #수정 여부 : X
 
 apiVersion: autoscaling/v1
@@ -47,7 +47,6 @@ spec:
     name: deploy-purchase
   targetCPUUtilizationPercentage: 50
 
-
 ---
 apiVersion: autoscaling/v1
 kind: HorizontalPodAutoscaler
@@ -93,3 +92,62 @@ spec:
     name: deploy-mypage
   targetCPUUtilizationPercentage: 50
 
+---
+apiVersion: autoscaling/v1
+kind: HorizontalPodAutoscaler
+metadata:
+  name: hpa-lastfilms
+  namespace: nginx
+spec:
+  maxReplicas: 10
+  minReplicas: 1
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: deploy-lastfilms
+  targetCPUUtilizationPercentage: 50
+
+---
+apiVersion: autoscaling/v1
+kind: HorizontalPodAutoscaler
+metadata:
+  name: hpa-snack
+  namespace: nginx
+spec:
+  maxReplicas: 10
+  minReplicas: 1
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: deploy-snack
+  targetCPUUtilizationPercentage: 50
+
+---
+apiVersion: autoscaling/v1
+kind: HorizontalPodAutoscaler
+metadata:
+  name: hpa-userinfo
+  namespace: nginx
+spec:
+  maxReplicas: 10
+  minReplicas: 1
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: deploy-userinfo
+  targetCPUUtilizationPercentage: 50
+
+---
+apiVersion: autoscaling/v1
+kind: HorizontalPodAutoscaler
+metadata:
+  name: hpa-month
+  namespace: nginx
+spec:
+  maxReplicas: 10
+  minReplicas: 1
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: deploy-month
+  targetCPUUtilizationPercentage: 50

@@ -1,4 +1,4 @@
-### v1.0  ###
+### v2.0  ###
 
 apiVersion: v1
 kind: Service
@@ -12,9 +12,9 @@ spec:
     app: tomcat
     name: films
   ports:
-    - protocol: TCP
-      port: 8080
-      targetPort: 8080
+  - protocol: TCP
+    port: 8080
+    targetPort: 8080
 
 ---
 apiVersion: v1
@@ -29,9 +29,9 @@ spec:
     app: tomcat
     name: index
   ports:
-    - protocol: TCP
-      port: 8080
-      targetPort: 8080
+  - protocol: TCP
+    port: 8080
+    targetPort: 8080
 
 ---
 apiVersion: v1
@@ -46,9 +46,9 @@ spec:
     app: tomcat
     name: join
   ports:
-    - protocol: TCP
-      port: 8080
-      targetPort: 8080
+  - protocol: TCP
+    port: 8080
+    targetPort: 8080
 
 ---
 apiVersion: v1
@@ -63,9 +63,9 @@ spec:
     app: tomcat
     name: login
   ports:
-    - protocol: TCP
-      port: 8080
-      targetPort: 8080
+  - protocol: TCP
+    port: 8080
+    targetPort: 8080
 
 ---
 apiVersion: v1
@@ -80,9 +80,9 @@ spec:
     app: tomcat
     name: mypage
   ports:
-    - protocol: TCP
-      port: 8080
-      targetPort: 8080
+  - protocol: TCP
+    port: 8080
+    targetPort: 8080
 
 ---
 apiVersion: v1
@@ -97,6 +97,74 @@ spec:
     app: tomcat
     name: purchase
   ports:
-    - protocol: TCP
-      port: 8080
-      targetPort: 8080
+  - protocol: TCP
+    port: 8080
+    targetPort: 8080
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: tomcat-snack-service
+  namespace: tomcat
+spec:
+  type: ClusterIP
+  clusterIP: 172.20.100.117
+  selector:
+    app: tomcat
+    name: snack
+  ports:
+  - protocol: TCP
+    port: 8080
+    targetPort: 8080
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: tomcat-userinfo-service
+  namespace: tomcat
+spec:
+  type: ClusterIP
+  clusterIP: 172.20.100.118
+  selector:
+    app: tomcat
+    name: userinfo 
+  ports:
+  - protocol: TCP
+    port: 8080
+    targetPort: 8080
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: tomcat-lastfilms-service
+  namespace: tomcat
+spec:
+  type: ClusterIP
+  clusterIP: 172.20.100.119
+  selector:
+    app: tomcat
+    name: lastfilms
+  ports:
+  - protocol: TCP
+    port: 8080
+    targetPort: 8080
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: tomcat-month-service
+  namespace: tomcat
+spec:
+  type: ClusterIP
+  clusterIP: 172.20.100.120
+  selector:
+    app: tomcat
+    name: month
+  ports:
+  - protocol: TCP
+    port: 8080
+    targetPort: 8080
