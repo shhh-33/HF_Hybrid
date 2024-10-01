@@ -60,7 +60,7 @@ spec:
     apiVersion: apps/v1
     kind: Deployment
     name: deploy-login
-  targetCPUUtilizationPercentage: 50
+  targetCPUUtilizationPercentage: 60
 
 ---
 apiVersion: autoscaling/v1
@@ -75,7 +75,7 @@ spec:
     apiVersion: apps/v1
     kind: Deployment
     name: deploy-join
-  targetCPUUtilizationPercentage: 50
+  targetCPUUtilizationPercentage: 60
 
 ---
 apiVersion: autoscaling/v1
@@ -90,7 +90,7 @@ spec:
     apiVersion: apps/v1
     kind: Deployment
     name: deploy-mypage
-  targetCPUUtilizationPercentage: 50
+  targetCPUUtilizationPercentage: 60
 
 ---
 apiVersion: autoscaling/v1
@@ -105,7 +105,7 @@ spec:
     apiVersion: apps/v1
     kind: Deployment
     name: deploy-lastfilms
-  targetCPUUtilizationPercentage: 50
+  targetCPUUtilizationPercentage: 60
 
 ---
 apiVersion: autoscaling/v1
@@ -120,7 +120,7 @@ spec:
     apiVersion: apps/v1
     kind: Deployment
     name: deploy-snack
-  targetCPUUtilizationPercentage: 50
+  targetCPUUtilizationPercentage: 60
 
 ---
 apiVersion: autoscaling/v1
@@ -150,4 +150,4 @@ spec:
     apiVersion: apps/v1
     kind: Deployment
     name: deploy-month
-  targetCPUUtilizationPercentage: 50
+  targetCPUUtilizationPercentage: 60
