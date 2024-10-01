@@ -1,0 +1,167 @@
+### v2.0  ###
+#모든 도메인 추가 : 관리포인트가 많아지는 대신 가용성 좋음
+#관리포인트를 줄이겠다는 고객의 요구가 있을 경우 나눌 예정
+# ingreess.yaml    -> index,login,join,lastfilms,month
+# ingress_sub.yaml -> films,mypage,snack,userinfo,purchase
+
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress2
+  namespace: nginx
+  annotations:
+    kubernetes.io/ingress.class: alb
+    alb.ingress.kubernetes.io/target-type: ip
+    alb.ingress.kubernetes.io/scheme: internet-facing
+    alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:ap-northeast-2:975050099328:certificate/632b1fbe-33a0-46b7-8c5b-cd89551324ec
+    alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}, {"HTTPS": 443}]'
+    alb.ingress.kubernetes.io/ssl-policy: ELBSecurityPolicy-2016-08
+spec:
+  ingressClassName: alb
+  rules:
+  - host: eunchae.shop
+    http: 
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: index-service
+            port:
+              number: 80
+      - path: /films.jsp
+        pathType: Prefix
+        backend:
+          service:
+            name: films-service
+            port:
+              number: 80 
+      - path: /purchase.jsp
+        pathType: Prefix
+        backend:
+          service:
+            name: purchase-service
+            port:
+              number: 80       
+      - path: /login.jsp
+        pathType: Prefix
+        backend:
+          service:
+            name: login-service
+            port:
+              number: 80
+      - path: /join.jsp
+        pathType: Prefix
+        backend:
+          service:
+            name: join-service
+            port:
+              number: 80
+      - path: /mypage.jsp
+        pathType: Prefix
+        backend:
+          service:
+            name: mypage-service
+            port:
+              number: 80
+      - path: /lastFilms.jsp
+        pathType: Prefix
+        backend:
+          service:
+            name: lastfilms-service
+            port:
+              number: 80
+      - path: /snack.jsp
+        pathType: Prefix
+        backend:
+          service:
+            name: snack-service
+            port:
+              number: 80              
+      - path: /userInfo.jsp
+        pathType: Prefix
+        backend:
+          service:
+            name: userinfo-service
+            port:
+              number: 80
+      - path: /month.jsp
+        pathType: Prefix
+        backend:
+          service:
+            name: month-service
+            port:
+              number: 80
+  - host: '*.eunchae.shop'
+    http: 
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: index-service
+            port:
+              number: 80
+      - path: /films.jsp
+        pathType: Prefix
+        backend:
+          service:
+            name: films-service
+            port:
+              number: 80 
+      - path: /purchase.jsp
+        pathType: Prefix
+        backend:
+          service:
+            name: purchase-service
+            port:
+              number: 80       
+      - path: /login.jsp
+        pathType: Prefix
+        backend:
+          service:
+            name: login-service
+            port:
+              number: 80
+      - path: /join.jsp
+        pathType: Prefix
+        backend:
+          service:
+            name: join-service
+            port:
+              number: 80
+      - path: /mypage.jsp
+        pathType: Prefix
+        backend:
+          service:
+            name: mypage-service
+            port:
+              number: 80
+      - path: /lastFilms.jsp
+        pathType: Prefix
+        backend:
+          service:
+            name: lastfilms-service
+            port:
+              number: 80
+      - path: /snack.jsp
+        pathType: Prefix
+        backend:
+          service:
+            name: snack-service
+            port:
+              number: 80              
+      - path: /userInfo.jsp
+        pathType: Prefix
+        backend:
+          service:
+            name: userinfo-service
+            port:
+              number: 80
+      - path: /month.jsp
+        pathType: Prefix
+        backend:
+          service:
+            name: month-service
+            port:
+              number: 80
