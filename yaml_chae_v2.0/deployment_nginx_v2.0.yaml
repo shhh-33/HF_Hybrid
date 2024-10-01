@@ -34,7 +34,8 @@ spec:
       affinity:
         podAffinity:
           preferredDuringSchedulingIgnoredDuringExecution:
-          - labelSelector:
+          - weight: 100
+            labelSelector:
               matchExpressions:
               - key: app
                 operator: In
@@ -49,7 +50,8 @@ spec:
             - tomcat
         podAntiAffinity:
           preferredDuringSchedulingIgnoredDuringExecution:
-            - labelSelector:
+            - weight: 100
+              labelSelector:
                 matchExpressions:
                   - key: name
                     operator: In
@@ -106,7 +108,8 @@ spec:
       affinity:
         podAffinity:
           preferredDuringSchedulingIgnoredDuringExecution:
-          - labelSelector:
+          - weight: 100
+            labelSelector:
               matchExpressions:
               - key: app
                 operator: In
@@ -178,7 +181,8 @@ spec:
       affinity:
         podAffinity:
           preferredDuringSchedulingIgnoredDuringExecution:
-          - labelSelector:
+          - weight: 100
+            labelSelector:
               matchExpressions:
               - key: app
                 operator: In
@@ -193,7 +197,8 @@ spec:
             - tomcat
         podAntiAffinity:
           preferredDuringSchedulingIgnoredDuringExecution:
-            - labelSelector:
+            - weight: 100
+              labelSelector:
                 matchExpressions:
                   - key: name
                     operator: In
@@ -250,7 +255,8 @@ spec:
       affinity:
         podAffinity:
           preferredDuringSchedulingIgnoredDuringExecution:
-          - labelSelector:
+          - weight: 100
+            labelSelector:
               matchExpressions:
               - key: app
                 operator: In
@@ -265,7 +271,8 @@ spec:
             - tomcat
         podAntiAffinity:
           preferredDuringSchedulingIgnoredDuringExecution:
-            - labelSelector:
+            - weight: 100
+              labelSelector:
                 matchExpressions:
                   - key: name
                     operator: In
@@ -322,7 +329,8 @@ spec:
       affinity:
         podAffinity:
           preferredDuringSchedulingIgnoredDuringExecution:
-          - labelSelector:
+          - weight: 100
+            labelSelector:
               matchExpressions:
               - key: app
                 operator: In
@@ -337,7 +345,8 @@ spec:
             - tomcat
         podAntiAffinity:
           preferredDuringSchedulingIgnoredDuringExecution:
-            - labelSelector:
+            - weight: 100
+              labelSelector:
                 matchExpressions:
                   - key: name
                     operator: In
@@ -395,7 +404,8 @@ spec:
       affinity:
         podAffinity:
           preferredDuringSchedulingIgnoredDuringExecution:
-          - labelSelector:
+          - weight: 100
+            labelSelector:
               matchExpressions:
               - key: app
                 operator: In
@@ -410,7 +420,8 @@ spec:
             - tomcat
         podAntiAffinity:
           preferredDuringSchedulingIgnoredDuringExecution:
-            - labelSelector:
+            - weight: 100
+              labelSelector:
                 matchExpressions:
                   - key: name
                     operator: In
@@ -469,7 +480,8 @@ spec:
       affinity:
         podAffinity:
           preferredDuringSchedulingIgnoredDuringExecution:
-          - labelSelector:
+          - weight: 100
+            labelSelector:
               matchExpressions:
               - key: app
                 operator: In
@@ -484,7 +496,8 @@ spec:
             - tomcat
         podAntiAffinity:
           preferredDuringSchedulingIgnoredDuringExecution:
-            - labelSelector:
+            - weight: 100
+              labelSelector:
                 matchExpressions:
                   - key: name
                     operator: In
@@ -542,7 +555,8 @@ spec:
       affinity:
         podAffinity:
           preferredDuringSchedulingIgnoredDuringExecution:
-          - labelSelector:
+          - weight: 100
+            labelSelector:
               matchExpressions:
               - key: app
                 operator: In
@@ -557,7 +571,8 @@ spec:
             - tomcat
         podAntiAffinity:
           preferredDuringSchedulingIgnoredDuringExecution:
-            - labelSelector:
+            - weight: 100
+              labelSelector:
                 matchExpressions:
                   - key: name
                     operator: In
@@ -615,7 +630,8 @@ spec:
       affinity:
         podAffinity:
           preferredDuringSchedulingIgnoredDuringExecution:
-          - labelSelector:
+          - weight: 100
+            labelSelector:
               matchExpressions:
               - key: app
                 operator: In
@@ -630,7 +646,8 @@ spec:
             - tomcat
         podAntiAffinity:
           preferredDuringSchedulingIgnoredDuringExecution:
-            - labelSelector:
+            - weight: 100
+              labelSelector:
                 matchExpressions:
                   - key: name
                     operator: In
@@ -688,7 +705,8 @@ spec:
       affinity:
         podAffinity:
           preferredDuringSchedulingIgnoredDuringExecution:
-          - labelSelector:
+          - weight: 100
+            labelSelector:
               matchExpressions:
               - key: app
                 operator: In
@@ -703,7 +721,8 @@ spec:
             - tomcat
         podAntiAffinity:
           preferredDuringSchedulingIgnoredDuringExecution:
-            - labelSelector:
+            - weight: 100
+              labelSelector:
                 matchExpressions:
                   - key: name
                     operator: In
