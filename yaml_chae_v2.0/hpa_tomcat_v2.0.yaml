@@ -62,7 +62,7 @@ spec:
     apiVersion: apps/v1
     kind: Deployment
     name: tomcat-join
-  targetCPUUtilizationPercentage: 50
+  targetCPUUtilizationPercentage: 60
 
 ---
 apiVersion: autoscaling/v1
@@ -77,7 +77,7 @@ spec:
     apiVersion: apps/v1
     kind: Deployment
     name: tomcat-login
-  targetCPUUtilizationPercentage: 50
+  targetCPUUtilizationPercentage: 60
 
 ---
 apiVersion: autoscaling/v1
@@ -92,7 +92,7 @@ spec:
     apiVersion: apps/v1
     kind: Deployment
     name: tomcat-mypage
-  targetCPUUtilizationPercentage: 50
+  targetCPUUtilizationPercentage: 60
 
 ---
 apiVersion: autoscaling/v1
@@ -107,7 +107,7 @@ spec:
     apiVersion: apps/v1
     kind: Deployment
     name: tomcat-snack
-  targetCPUUtilizationPercentage: 50
+  targetCPUUtilizationPercentage: 60
 
 
 ---
@@ -138,7 +138,7 @@ spec:
     apiVersion: apps/v1
     kind: Deployment
     name: tomcat-month
-  targetCPUUtilizationPercentage: 50
+  targetCPUUtilizationPercentage: 60
 
 ---
 apiVersion: autoscaling/v1
@@ -153,4 +153,4 @@ spec:
     apiVersion: apps/v1
     kind: Deployment
     name: tomcat-lastfilms
-  targetCPUUtilizationPercentage: 50
+  targetCPUUtilizationPercentage: 60
