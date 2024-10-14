@@ -33,29 +33,33 @@ spec:
     spec:
       affinity:
         podAffinity:
-          requiredDuringSchedulingIgnoredDuringExecution:
-          - labelSelector:
-              matchExpressions:
-              - key: app
-                operator: In
-                values:
-                - tomcat
-              - key: name
-                operator: In
-                values:
-                - index
-            topologyKey: "kubernetes.io/hostname"
-            namespaces:
-            - tomcat
-        podAntiAffinity:
-          requiredDuringSchedulingIgnoredDuringExecution:
-            - labelSelector:
+          preferredDuringSchedulingIgnoredDuringExecution:
+          - weight: 100
+            podAffinityTerm:
+              labelSelector:
                 matchExpressions:
-                  - key: name
-                    operator: In
-                    values:
-                      - index
+                - key: app
+                  operator: In
+                  values:
+                  - tomcat
+                - key: name
+                  operator: In
+                  values:
+                  - index
               topologyKey: "kubernetes.io/hostname"
+              namespaces:
+              - tomcat
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+            - weight: 100
+              podAffinityTerm:
+                labelSelector:
+                  matchExpressions:
+                    - key: name
+                      operator: In
+                      values:
+                        - index
+                topologyKey: "kubernetes.io/hostname"
       containers:
         - image: 975050099328.dkr.ecr.ap-northeast-2.amazonaws.com/nginx-index:v1.0
           name: index
@@ -105,29 +109,33 @@ spec:
     spec:
       affinity:
         podAffinity:
-          requiredDuringSchedulingIgnoredDuringExecution:
-          - labelSelector:
-              matchExpressions:
-              - key: app
-                operator: In
-                values:
-                - tomcat
-              - key: name
-                operator: In
-                values:
-                - films
-            topologyKey: "kubernetes.io/hostname"
-            namespaces:
-            - tomcat
-        podAntiAffinity:
-          requiredDuringSchedulingIgnoredDuringExecution:
-            - labelSelector:
+          preferredDuringSchedulingIgnoredDuringExecution:
+          - weight: 100
+            podAffinityTerm:
+              labelSelector:
                 matchExpressions:
-                  - key: name
-                    operator: In
-                    values:
-                      - films
+                - key: app
+                  operator: In
+                  values:
+                  - tomcat
+                - key: name
+                  operator: In
+                  values:
+                  - films
               topologyKey: "kubernetes.io/hostname"
+              namespaces:
+              - tomcat
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+            - weight: 100
+              podAffinityTerm:
+                labelSelector:
+                  matchExpressions:
+                    - key: name
+                      operator: In
+                      values:
+                        - films
+                topologyKey: "kubernetes.io/hostname"
       containers:
         - image: 975050099328.dkr.ecr.ap-northeast-2.amazonaws.com/nginx-films:v1.0
           name: films
@@ -177,29 +185,33 @@ spec:
     spec:
       affinity:
         podAffinity:
-          requiredDuringSchedulingIgnoredDuringExecution:
-          - labelSelector:
-              matchExpressions:
-              - key: app
-                operator: In
-                values:
-                - tomcat
-              - key: name
-                operator: In
-                values:
-                - purchase
-            topologyKey: "kubernetes.io/hostname"
-            namespaces:
-            - tomcat
-        podAntiAffinity:
-          requiredDuringSchedulingIgnoredDuringExecution:
-            - labelSelector:
+          preferredDuringSchedulingIgnoredDuringExecution:
+          - weight: 100
+            podAffinityTerm:
+              labelSelector:
                 matchExpressions:
-                  - key: name
-                    operator: In
-                    values:
-                      - purchase
+                - key: app
+                  operator: In
+                  values:
+                  - tomcat
+                - key: name
+                  operator: In
+                  values:
+                  - purchase
               topologyKey: "kubernetes.io/hostname"
+              namespaces:
+              - tomcat
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+            - weight: 100
+              podAffinityTerm:
+                labelSelector:
+                  matchExpressions:
+                    - key: name
+                      operator: In
+                      values:
+                        - purchase
+                topologyKey: "kubernetes.io/hostname"
       containers:
         - image: 975050099328.dkr.ecr.ap-northeast-2.amazonaws.com/nginx-purchase:v1.0
           name: purchase
@@ -249,29 +261,33 @@ spec:
     spec:
       affinity:
         podAffinity:
-          requiredDuringSchedulingIgnoredDuringExecution:
-          - labelSelector:
-              matchExpressions:
-              - key: app
-                operator: In
-                values:
-                - tomcat
-              - key: name
-                operator: In
-                values:
-                - join
-            topologyKey: "kubernetes.io/hostname"
-            namespaces:
-            - tomcat
-        podAntiAffinity:
-          requiredDuringSchedulingIgnoredDuringExecution:
-            - labelSelector:
+          preferredDuringSchedulingIgnoredDuringExecution:
+          - weight: 100
+            podAffinityTerm:
+              labelSelector:
                 matchExpressions:
-                  - key: name
-                    operator: In
-                    values:
-                      - join
+                - key: app
+                  operator: In
+                  values:
+                  - tomcat
+                - key: name
+                  operator: In
+                  values:
+                  - join
               topologyKey: "kubernetes.io/hostname"
+              namespaces:
+              - tomcat
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+            - weight: 100
+              podAffinityTerm:
+                labelSelector:
+                  matchExpressions:
+                    - key: name
+                      operator: In
+                      values:
+                        - join
+                topologyKey: "kubernetes.io/hostname"
       containers:
         - image: 975050099328.dkr.ecr.ap-northeast-2.amazonaws.com/nginx-join:v1.0
           name: join
@@ -321,29 +337,33 @@ spec:
     spec:
       affinity:
         podAffinity:
-          requiredDuringSchedulingIgnoredDuringExecution:
-          - labelSelector:
-              matchExpressions:
-              - key: app
-                operator: In
-                values:
-                - tomcat
-              - key: name
-                operator: In
-                values:
-                - login
-            topologyKey: "kubernetes.io/hostname"
-            namespaces:
-            - tomcat
-        podAntiAffinity:
-          requiredDuringSchedulingIgnoredDuringExecution:
-            - labelSelector:
+          preferredDuringSchedulingIgnoredDuringExecution:
+          - weight: 100
+            podAffinityTerm:
+              labelSelector:
                 matchExpressions:
-                  - key: name
-                    operator: In
-                    values:
-                      - login
+                - key: app
+                  operator: In
+                  values:
+                  - tomcat
+                - key: name
+                  operator: In
+                  values:
+                  - login
               topologyKey: "kubernetes.io/hostname"
+              namespaces:
+              - tomcat
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+            - weight: 100
+              podAffinityTerm:
+                labelSelector:
+                  matchExpressions:
+                    - key: name
+                      operator: In
+                      values:
+                        - login
+                topologyKey: "kubernetes.io/hostname"
       containers:
         - image: 975050099328.dkr.ecr.ap-northeast-2.amazonaws.com/nginx-login:v1.0
           name: login
