@@ -1,0 +1,36 @@
+name: Terraform EKS 배포
+
+on:
+  push:
+    branches:
+      - main  # main 브랜치에 코드가 푸시될 때 실행
+
+jobs:
+  terraform:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 코드 체크아웃 (GitHub 저장소에서 코드 가져오기)
+        uses: actions/checkout@v3
+
+      - name: AWS 자격 증명 설정
+        run: |
+          # echo "AWS_ACCESS_KEY_ID=${{ . }}" >> $GITHUB_ENV
+          # echo "AWS_SECRET_ACCESS_KEY=${{ . }}" >> $GITHUB_ENV
+
+      - name: Terraform 설치
+        uses: hashicorp/setup-terraform@v2
+        with:
+          terraform_version: 1.5.0
+
+      - name: Terraform 초기화
+        run: terraform init
+
+      - name: Terraform 유효성 검사
+        run: terraform validate
+
+      - name: Terraform 실행 계획 확인
+        run: terraform plan
+
+      - name: Terraform 적용 (자동 승인)
+        run: terraform apply -auto-approve
